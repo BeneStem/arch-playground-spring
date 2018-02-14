@@ -27,22 +27,10 @@ module.exports = {
   target: 'web',
   entry: {
     main: [
-      'eventsource-polyfill',
-      'whatwg-fetch',
       path.resolve(appDirectory, 'src/client/index.tsx'),
       path.resolve(appDirectory, 'src/client/offlinePlugin.ts')
     ],
-    vendor: [
-      'eventsource-polyfill',
-      'whatwg-fetch',
-      'react',
-      'react-dom',
-      'react-tap-event-plugin',
-      'react-hot-loader',
-      'material-ui/styles/MuiThemeProvider',
-      'rx-dom',
-      'offline-plugin/runtime'
-    ]
+    vendor: ['offline-plugin/runtime']
   },
   output: {
     path: path.resolve(appDirectory, 'src/main/resources/static'),
@@ -214,9 +202,6 @@ module.exports = {
         join_vars: true,
         drop_console: true,
         drop_debugger: true,
-        global_defs: {
-          __REACT_HOT_LOADER__: undefined // eslint-disable-line no-undefined
-        },
         reduce_vars: true
       },
       minimize: true,
@@ -274,7 +259,7 @@ module.exports = {
       }
     }),
     new FaviconsWebpackPlugin({
-      title: 'Reactive Products',
+      title: 'Arch Playground',
       logo: path.resolve(appDirectory, 'src/client/resources/logo.png'),
       prefix: 'icons/',
       emitStats: true,

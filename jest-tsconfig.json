@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "allowJs": false,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "lib": [
       "dom",
       "es2015"

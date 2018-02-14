@@ -22,23 +22,11 @@ module.exports = {
   target: 'web',
   entry: {
     main: [
-      'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
-      'eventsource-polyfill',
-      'whatwg-fetch',
       path.resolve(appDirectory, 'src/client/index.tsx')
     ],
-    vendor: [
-      'eventsource-polyfill',
-      'whatwg-fetch',
-      'react',
-      'react-dom',
-      'react-tap-event-plugin',
-      'react-hot-loader',
-      'material-ui/styles/MuiThemeProvider',
-      'rx-dom'
-    ]
+    vendor: []
   },
   output: {
     path: path.resolve(appDirectory, 'src/main/resources/static'),
