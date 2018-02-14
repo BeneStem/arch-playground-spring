@@ -64,6 +64,7 @@ dependencies {
   "compile"("de.undercouch:bson4jackson:2.9.0")
   "compile"("de.otto.edison:edison-vault:2.0.4")
   "compile"("com.damnhandy:handy-uri-templates:2.1.6")
+  "compile"("org.apache.httpcomponents:httpclient:4.5.5")
 
   "compile"("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 
@@ -80,9 +81,9 @@ apply {
   from("$rootDir/gradle/versions.gradle.kts")
   from("$rootDir/gradle/springBoot.gradle.kts")
   from("$rootDir/gradle/compile.gradle.kts")
-  from("$rootDir/gradle/checkstyle.gradle.kts")
-//  from("$rootDir/gradle/findbugs.gradle.kts")
-  from("$rootDir/gradle/pmd.gradle.kts")
+  //  from("$rootDir/gradle/checkstyle.gradle.kts")
+  //  from("$rootDir/gradle/findbugs.gradle.kts")
+  //  from("$rootDir/gradle/pmd.gradle.kts")
   from("$rootDir/gradle/test.gradle.kts")
   from("$rootDir/gradle/jacoco.gradle.kts")
 }

@@ -8,10 +8,10 @@ public enum Features implements Feature {
 
   /**
    * Usage in thymeleaf template:
-   * th:if="${T(de.otto.social.feed.toggle.domain.Features).SHOW_PAGING_BUTTON.active}"
+   * th:if="${T(com.breuninger.arch.playground.toggle.domain.Features).TEST_TOGGLE.active}"
    * Usage in Tests:
    * FeatureManagerSupport.allDisabledFeatureConfig(Features.class);
-   * FeatureManagerSupport.enable(SHOW_FEED_TEASER_IN_WISHLIST_PAGE);
+   * FeatureManagerSupport.enable(TEST_TOGGLE);
    */
 
   @Label("TEST_TOGGLE") TEST_TOGGLE;
