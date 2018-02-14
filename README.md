@@ -1,8 +1,8 @@
-# reactive-products
+# arch-playground 
 
 > "TODO" - Someone Nice
 
-Make otto products reactive.
+Make breuninger architecture great again.
 
 ## Roadmap
 
@@ -28,7 +28,7 @@ Build server:
 
 Start server:
 
-    $ java -jar build/libs/reactive-products.jar
+    $ java -jar build/libs/arch-playground.jar
 
 Start client in dev mode:
 
