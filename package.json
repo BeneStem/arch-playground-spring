@@ -1,0 +1,189 @@
+{
+  "name": "reactive-products",
+  "version": "1.0.0-SNAPSHOT",
+  "description": "Make otto products reactive.",
+  "main": "index.js",
+  "scripts": {
+    "test": "stylelint '{**/,}*.{css,scss}' && eslint '{**/,}*.{js,jsx}' && tslint -p ./tsconfig.json 'src/client{**/,}*.{ts,tsx}' && NODE_ENV=test jest",
+    "build": "rm -rf src/main/resources/static && NODE_ENV=production webpack --progress --config ./webpack/webpack.config.prod.js",
+    "dependency-update": "npm-check -E -u",
+    "precommit": "lint-staged",
+    "cz": "git-cz",
+    "commitmsg": "commitlint -e",
+    "start": "rm -rf src/main/resources/static && NODE_ENV=development webpack-dashboard -- webpack-dev-server --config ./webpack/webpack.config.dev.js"
+  },
+  "lint-staged": {
+    "{**/,}*.{ts,tsx}": [
+      "tslint --fix",
+      "git add"
+    ],
+    "{**/,}*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "{**/,}*.{css,scss}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "jest-tsconfig.json"
+      }
+    },
+    "collectCoverageFrom": [
+      "<rootDir>/src/client/{**/,}*.{ts,tsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/node_modules/whatwg-fetch/fetch.js"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/src/client/setupTests.tsx",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "testMatch": [
+      "<rootDir>/src/client/{**/,}*.test.{ts,tsx}"
+    ],
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "moduleNameMapper": {
+      "^.+\\.css$": "identity-obj-proxy"
+    },
+    "modulePathIgnorePatterns": [
+      "(.idea|.gradle|build|classes|coverage|gradle|node_modules|src/main|src/test|webpack)"
+    ]
+  },
+  "babel": {
+    "env": {
+      "development": {
+        "plugins": [
+          "react-hot-loader/babel"
+        ]
+      }
+    },
+    "plugins": [
+      [
+        "react-css-modules",
+        {
+          "generateScopedName": "[name]__[local]___[hash:base64:5]"
+        }
+      ]
+    ],
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 version",
+              "ie 9"
+            ]
+          },
+          "modules": false,
+          "useBuiltIns": true
+        }
+      ],
+      "react"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lhotse.ov.otto.de:bstemmildt/reactive-products.git "
+  },
+  "devDependencies": {
+    "@commitlint/cli": "5.2.8",
+    "@types/enzyme": "3.1.6",
+    "@types/enzyme-adapter-react-16": "1.0.1",
+    "@types/jest": "22.0.1",
+    "@types/material-ui": "0.20.1",
+    "@types/react": "16.0.34",
+    "@types/react-css-modules": "4.6.0",
+    "@types/react-dom": "16.0.3",
+    "@types/react-hot-loader": "3.0.5",
+    "@types/react-redux": "5.0.14",
+    "@types/react-tap-event-plugin": "0.0.30",
+    "@types/redux-actions": "2.2.3",
+    "@types/redux-mock-store": "0.0.13",
+    "@types/rx-dom": "7.0.0",
+    "awesome-typescript-loader": "3.4.1",
+    "babel-plugin-react-css-modules": "3.3.2",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "case-sensitive-paths-webpack-plugin": "2.1.1",
+    "commitizen": "2.9.6",
+    "compression-webpack-plugin": "1.1.3",
+    "css-loader": "0.28.8",
+    "cssnano": "3.10.0",
+    "cz-conventional-changelog": "2.1.0",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "eslint": "4.15.0",
+    "eventsource-polyfill": "0.9.6",
+    "extract-text-webpack-plugin": "3.0.2",
+    "favicons-webpack-plugin": "0.0.7",
+    "file-loader": "1.1.6",
+    "friendly-errors-webpack-plugin": "1.6.1",
+    "html-webpack-plugin": "2.30.1",
+    "husky": "0.14.3",
+    "identity-obj-proxy": "3.0.0",
+    "image-webpack-loader": "3.4.2",
+    "jest": "22.0.4",
+    "jest-enzyme": "4.0.2",
+    "lint-staged": "6.0.0",
+    "material-ui": "0.20.0",
+    "npm-check": "5.5.2",
+    "offline-plugin": "4.9.0",
+    "optimize-css-assets-webpack-plugin": "3.2.0",
+    "postcss": "6.0.16",
+    "postcss-cssnext": "3.0.2",
+    "postcss-flexbugs-fixes": "3.2.0",
+    "postcss-import": "11.0.0",
+    "postcss-loader": "2.0.10",
+    "react": "16.2.0",
+    "react-dev-utils": "4.2.1",
+    "react-dom": "16.2.0",
+    "react-hot-loader": "3.1.3",
+    "react-redux": "5.0.6",
+    "react-tap-event-plugin": "3.0.2",
+    "react-test-renderer": "16.2.0",
+    "redux": "3.7.2",
+    "redux-actions": "2.2.1",
+    "redux-mock-store": "1.4.0",
+    "redux-observable": "0.17.0",
+    "rx-dom": "7.0.3",
+    "rxjs": "5.5.6",
+    "source-map-loader": "0.2.3",
+    "style-loader": "0.19.1",
+    "stylelint": "8.4.0",
+    "ts-jest": "22.0.1",
+    "tslint": "5.8.0",
+    "tslint-eslint-rules": "4.1.1",
+    "tslint-language-service": "0.9.7",
+    "tslint-react": "3.3.3",
+    "typescript": "2.6.2",
+    "url-loader": "0.6.2",
+    "webpack": "3.10.0",
+    "webpack-dashboard": "1.0.2",
+    "webpack-dev-server": "2.10.0",
+    "webpack-manifest-plugin": "1.3.2",
+    "whatwg-fetch": "2.0.3"
+  },
+  "author": {
+    "name": "Benedikt Stemmildt",
+    "email": "benedikt@stemmildt.com",
+    "url": "https://github.com/benestem"
+  },
+  "license": "Apache-2.0"
+}
