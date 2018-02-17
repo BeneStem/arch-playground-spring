@@ -1,6 +1,7 @@
 /.awcache/
 /.idea/
 /.gradle/
+gradle/wrapper/gradle-wrapper.jar
 /build/
 /classes/
 /coverage/
