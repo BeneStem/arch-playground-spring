@@ -45,7 +45,7 @@ module.exports = {
     'scope-case': [
       2,
       'always',
-      'lowerCase'
+      'lower-case'
     ],
     'scope-max-length': [
       2,
