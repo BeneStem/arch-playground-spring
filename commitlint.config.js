@@ -60,7 +60,7 @@ module.exports = {
     'subject-case': [
       2,
       'always',
-      'lower-case'
+      'sentence-case'
     ],
     'subject-empty': [
       2,
