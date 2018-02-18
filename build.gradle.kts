@@ -1,3 +1,5 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdates
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.JavaVersion
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.kotlin.dsl.configure
@@ -6,25 +8,6 @@ import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.springframework.boot.gradle.run.BootRunTask
-
-apply {
-  plugin("java")
-}
-
-version = "1.0.0-SNAPSHOT"
-configure<JavaPluginConvention> {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-tasks {
-  "compileJava"(JavaCompile::class) {
-    options.compilerArgs.add("-parameters")
-  }
-  "compileTestJava"(JavaCompile::class) {
-    options.compilerArgs.add("-parameters")
-  }
-}
 
 buildscript {
   val springVersion = "5.0.3.RELEASE"
@@ -38,14 +21,27 @@ buildscript {
     maven { setUrl("https://plugins.gradle.org/m2/") }
   }
   dependencies {
-    classpath("com.github.ben-manes:gradle-versions-plugin:0.17.0")
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
     classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.20")
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+    classpath("com.github.ben-manes:gradle-versions-plugin:0.17.0")
   }
+}
+
+version = "1.0.0-SNAPSHOT"
+configure<JavaPluginConvention> {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 repositories {
   jcenter()
+}
+
+apply {
+  plugin("idea")
+  plugin("com.gorylenko.gradle-git-properties")
+  plugin("org.springframework.boot")
+  plugin("com.github.ben-manes.versions")
 }
 
 val springVersion = extra["springVersion"] as String
@@ -87,9 +83,6 @@ dependencies {
 }
 
 apply {
-  from("$rootDir/gradle/idea.gradle.kts")
-  from("$rootDir/gradle/versions.gradle.kts")
-  from("$rootDir/gradle/springBoot.gradle.kts")
   from("$rootDir/gradle/compile.gradle.kts")
   from("$rootDir/gradle/checkstyle.gradle.kts")
   from("$rootDir/gradle/findbugs.gradle.kts")
@@ -99,6 +92,20 @@ apply {
 }
 
 tasks {
+  "dependencyUpdates"(DependencyUpdatesTask::class) {
+    resolutionStrategy = closureOf<ResolutionStrategy> {
+      componentSelection {
+        all {
+          val alphaBetaPattern = Regex("^.*[\\.-](alpha|beta|b|rc|cr|m|ea|incubating|atlassian|snap)[\\.\\w\\d-]*$",
+            RegexOption.IGNORE_CASE)
+          if (candidate.version.matches(alphaBetaPattern)) {
+            reject("Rejected by alpha/beta revision: ${candidate}")
+          }
+        }
+      }
+    }
+  }
+
   withType<BootRunTask> {
     systemProperties = System.getProperties().mapKeys { entry -> entry.key.toString() }.toMap()
   }
