@@ -9,9 +9,15 @@ import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.springframework.boot.gradle.run.BootRunTask
 
+version = "1.0.0-SNAPSHOT"
+
 apply {
   plugin("java")
-  plugin("idea")
+}
+
+configure<JavaPluginConvention> {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 buildscript {
@@ -32,20 +38,8 @@ buildscript {
   }
 }
 
-version = "1.0.0-SNAPSHOT"
-configure<JavaPluginConvention> {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 repositories {
   jcenter()
-}
-
-apply {
-  plugin("com.gorylenko.gradle-git-properties")
-  plugin("org.springframework.boot")
-  plugin("com.github.ben-manes.versions")
 }
 
 val springVersion = extra["springVersion"] as String
@@ -87,6 +81,11 @@ dependencies {
 }
 
 apply {
+  plugin("idea")
+  plugin("com.gorylenko.gradle-git-properties")
+  plugin("org.springframework.boot")
+  plugin("com.github.ben-manes.versions")
+
   from("$rootDir/gradle/checkstyle.gradle.kts")
   from("$rootDir/gradle/findbugs.gradle.kts")
   from("$rootDir/gradle/pmd.gradle.kts")
