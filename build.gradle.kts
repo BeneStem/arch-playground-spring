@@ -16,8 +16,15 @@ configure<JavaPluginConvention> {
   sourceCompatibility = JavaVersion.VERSION_1_8
   targetCompatibility = JavaVersion.VERSION_1_8
 }
-// TODO (BS)
-// [compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters']
+
+tasks {
+  "compileJava"(JavaCompile::class) {
+    options.compilerArgs.add("-parameters")
+  }
+  "compileTestJava"(JavaCompile::class) {
+    options.compilerArgs.add("-parameters")
+  }
+}
 
 buildscript {
   val springVersion = "5.0.3.RELEASE"
@@ -93,7 +100,6 @@ apply {
 
 tasks {
   withType<BootRunTask> {
-    // TODO (BS)
-    // systemProperties = System.getProperties().toMap<String, Any>()
+    systemProperties = System.getProperties().mapKeys { entry -> entry.key.toString() }.toMap()
   }
 }
