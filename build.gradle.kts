@@ -9,6 +9,11 @@ import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
 import org.springframework.boot.gradle.run.BootRunTask
 
+apply {
+  plugin("java")
+  plugin("idea")
+}
+
 buildscript {
   val springVersion = "5.0.3.RELEASE"
   val springBootVersion = "1.5.10.RELEASE"
@@ -38,7 +43,6 @@ repositories {
 }
 
 apply {
-  plugin("idea")
   plugin("com.gorylenko.gradle-git-properties")
   plugin("org.springframework.boot")
   plugin("com.github.ben-manes.versions")
@@ -83,7 +87,6 @@ dependencies {
 }
 
 apply {
-  from("$rootDir/gradle/compile.gradle.kts")
   from("$rootDir/gradle/checkstyle.gradle.kts")
   from("$rootDir/gradle/findbugs.gradle.kts")
   from("$rootDir/gradle/pmd.gradle.kts")
@@ -92,6 +95,15 @@ apply {
 }
 
 tasks {
+  withType<JavaCompile> {
+    options.encoding = "UTF-8"
+    options.compilerArgs.addAll(arrayOf("-Xlint:all", "-parameters"))
+  }
+
+  withType<BootRunTask> {
+    systemProperties = System.getProperties().mapKeys { entry -> entry.key.toString() }.toMap()
+  }
+
   "dependencyUpdates"(DependencyUpdatesTask::class) {
     resolutionStrategy = closureOf<ResolutionStrategy> {
       componentSelection {
@@ -104,9 +116,5 @@ tasks {
         }
       }
     }
-  }
-
-  withType<BootRunTask> {
-    systemProperties = System.getProperties().mapKeys { entry -> entry.key.toString() }.toMap()
   }
 }
