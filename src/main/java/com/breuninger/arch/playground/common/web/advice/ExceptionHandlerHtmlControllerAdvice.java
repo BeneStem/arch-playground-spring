@@ -21,13 +21,13 @@ import com.breuninger.arch.playground.common.domain.ValidationError;
 @ControllerAdvice
 public class ExceptionHandlerHtmlControllerAdvice {
 
-  //  @ExceptionHandler(RedirectionException.class)
-  //  public RedirectView redirection(final RedirectionException exception) {
-  //    final RedirectView loginRedirectView = new RedirectView(exception.getLocation().toString());
-  //    loginRedirectView.setStatusCode(HttpStatus.valueOf(exception.getResponse().getStatus()));
-  //    loginRedirectView.setExposeModelAttributes(false);
-  //    return loginRedirectView;
-  //  }
+  // @ExceptionHandler(RedirectionException.class)
+  // public RedirectView redirection(final RedirectionException exception) {
+  //   final RedirectView loginRedirectView = new RedirectView(exception.getLocation().toString());
+  //   loginRedirectView.setStatusCode(HttpStatus.valueOf(exception.getResponse().getStatus()));
+  //   loginRedirectView.setExposeModelAttributes(false);
+  //   return loginRedirectView;
+  // }
 
   @ExceptionHandler(BadRequestException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -5,6 +5,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.extra
 import org.gradle.kotlin.dsl.repositories
 import org.gradle.kotlin.dsl.withType
+import org.springframework.boot.gradle.run.BootRunTask
 
 apply {
   plugin("java")
@@ -15,7 +16,8 @@ configure<JavaPluginConvention> {
   sourceCompatibility = JavaVersion.VERSION_1_8
   targetCompatibility = JavaVersion.VERSION_1_8
 }
-//[compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters']
+// TODO (BS)
+// [compileJava, compileTestJava]*.options*.compilerArgs = ['-parameters']
 
 buildscript {
   val springVersion = "5.0.3.RELEASE"
@@ -71,6 +73,7 @@ dependencies {
   "testCompileOnly"("org.projectlombok:lombok:1.16.20")
 
   "testCompile"("de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.3")
+  "testCompile"("org.mockito:mockito-core:2.15.0")
   "testCompile"("de.otto.edison:edison-testsupport:$edison")
   "testCompile"("com.github.baev:hamcrest-optional:1.0")
   "testCompile"("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
@@ -81,9 +84,16 @@ apply {
   from("$rootDir/gradle/versions.gradle.kts")
   from("$rootDir/gradle/springBoot.gradle.kts")
   from("$rootDir/gradle/compile.gradle.kts")
-  //  from("$rootDir/gradle/checkstyle.gradle.kts")
-  //  from("$rootDir/gradle/findbugs.gradle.kts")
-  //  from("$rootDir/gradle/pmd.gradle.kts")
+  from("$rootDir/gradle/checkstyle.gradle.kts")
+  from("$rootDir/gradle/findbugs.gradle.kts")
+  from("$rootDir/gradle/pmd.gradle.kts")
   from("$rootDir/gradle/test.gradle.kts")
   from("$rootDir/gradle/jacoco.gradle.kts")
+}
+
+tasks {
+  withType<BootRunTask> {
+    // TODO (BS)
+    // systemProperties = System.getProperties().toMap<String, Any>()
+  }
 }

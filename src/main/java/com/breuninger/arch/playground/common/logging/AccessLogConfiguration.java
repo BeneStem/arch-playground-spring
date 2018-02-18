@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 // TODO Replace with application properties when spring boot 2 is released
 public class AccessLogConfiguration {
 
-  private static final Logger ACCESSLOG = LoggerFactory.getLogger("com.breuninger.arch.playground.accesslog");
+  static final Logger ACCESSLOG = LoggerFactory.getLogger("com.breuninger.arch.playground.accesslog");
 
   @Bean
   public EmbeddedServletContainerFactory jettyConfigBean() {
@@ -46,8 +46,7 @@ public class AccessLogConfiguration {
 
     @Override
     public void write(final String requestEntry) {
-      final String logLineWithoutHost = requestEntry.replaceFirst("\\/\\/.*?\\/", "/");
-      ACCESSLOG.info(logLineWithoutHost);
+      ACCESSLOG.info(requestEntry);
     }
   }
 }

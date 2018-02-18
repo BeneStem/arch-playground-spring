@@ -1,16 +1,18 @@
 apply { plugin("jacoco") }
 
-//jacoco {
-//  toolVersion = plugin_versions.jacoco
-//}
-//
-//jacocoTestReport {
-//  group = "Coverage"
-//  reports {
-//    xml.enabled = false
-//    html.enabled = true
-//    html.destination "$buildDir/reports/coverage/server"
-//  }
-//}
-//
-//test.finalizedBy jacocoTestReport
+configure<JacocoPluginExtension> {
+  toolVersion = "0.8.0"
+}
+
+tasks.withType<JacocoReport> {
+  group = "Coverage"
+  reports {
+    xml.setEnabled(false)
+    html.setEnabled(true)
+    html.destination = file("$buildDir/reports/coverage/server")
+  }
+}
+
+tasks.withType<Test> {
+  finalizedBy("jacocoTestReport")
+}

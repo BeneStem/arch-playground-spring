@@ -1,13 +1,13 @@
 /.awcache/
 /.idea/
 /.gradle/
-gradle/wrapper/gradle-wrapper.jar
 /build/
 /classes/
 /coverage/
+/gradle/wrapper/gradle-wrapper.jar
 /node_modules/
-/src/main/resources/static/
 /out/
+/src/main/resources/static/
 /arch-playground.iml
 .DS_Store
 npm-debug.log*

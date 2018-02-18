@@ -1,9 +1,10 @@
 apply { plugin("checkstyle") }
 
-//checkstyle {
-//  showViolations = false
-//  toolVersion = plugin_versions.checkstyle
-//}
+configure<CheckstyleExtension> {
+  toolVersion = "8.8"
+  configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
+  isShowViolations = false
+}
 
 tasks.withType<Checkstyle> {
   group = "Checkstyle"

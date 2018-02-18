@@ -11,6 +11,7 @@ import com.google.common.collect.ImmutableMap;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
+@SuppressWarnings("checkstyle:MultipleStringLiterals")
 public final class SlugificationUtil {
 
   private static final Map<Character, String> CHAR_MAP_UMLAUTE;

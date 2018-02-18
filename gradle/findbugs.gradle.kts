@@ -1,10 +1,10 @@
 apply { plugin("findbugs") }
 
-//findbugs {
-//  effort = "max"
-//  toolVersion = versions.findbugs
-//  excludeFilter = file("$rootDir/config/findbugs/findbugs-exclude.xml")
-//}
+configure<FindBugsExtension> {
+  toolVersion = "3.0.1"
+  effort = "max"
+  excludeFilter = file("$rootDir/config/findbugs/findbugs-exclude.xml")
+}
 
 tasks.withType<FindBugs> {
   group = "Findbugs"

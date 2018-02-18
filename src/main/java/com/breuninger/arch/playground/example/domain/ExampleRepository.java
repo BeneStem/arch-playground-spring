@@ -40,6 +40,7 @@ public class ExampleRepository extends AbstractMongoRepository<String, Example> 
 
   @Override
   protected void ensureIndexes() {
-    // CompletableFuture.runAsync(() -> collection().createIndex(Indexes.compoundIndex(Indexes.ascending(BOARD_ID), Indexes.descending(CREATION_DATE)), new IndexOptions().background(true)));
+    // CompletableFuture.runAsync(() -> collection().createIndex(Indexes.compoundIndex(
+    // Indexes.ascending(BOARD_ID), Indexes.descending(CREATION_DATE)), new IndexOptions().background(true)));
   }
 }

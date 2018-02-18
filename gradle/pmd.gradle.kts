@@ -1,10 +1,10 @@
 apply { plugin("pmd") }
 
-//pmd {
-//  ruleSetFiles = files("${rootDir}/config/pmd/ruleset.xml")
-//  toolVersion = plugin_versions.pmd
-//  consoleOutput = false
-//}
+configure<PmdExtension> {
+  toolVersion = "5.8.1"
+  ruleSetFiles = files("${rootDir}/config/pmd/ruleset.xml")
+  isConsoleOutput = false
+}
 
 tasks.withType<Pmd> {
   group = "PMD"
