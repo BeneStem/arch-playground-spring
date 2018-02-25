@@ -1,7 +1,9 @@
+val pluginVersions = extra["pluginVersions"] as Map<*, *>
+
 apply { plugin("jacoco") }
 
 configure<JacocoPluginExtension> {
-  toolVersion = "0.8.0"
+  toolVersion = pluginVersions["jacoco"] as String
 }
 
 tasks.withType<JacocoReport> {

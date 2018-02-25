@@ -1,7 +1,9 @@
+val versions = extra["versions"] as Map<*, *>
+
 apply { plugin("findbugs") }
 
 configure<FindBugsExtension> {
-  toolVersion = "3.0.1"
+  toolVersion = versions["findbugs"] as String
   effort = "max"
   excludeFilter = file("$rootDir/config/findbugs/findbugs-exclude.xml")
 }

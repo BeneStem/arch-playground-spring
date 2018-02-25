@@ -1,7 +1,9 @@
+val pluginVersions = extra["pluginVersions"] as Map<*, *>
+
 apply { plugin("pmd") }
 
 configure<PmdExtension> {
-  toolVersion = "5.8.1"
+  toolVersion = pluginVersions["pmd"] as String
   ruleSetFiles = files("${rootDir}/config/pmd/ruleset.xml")
   isConsoleOutput = false
 }

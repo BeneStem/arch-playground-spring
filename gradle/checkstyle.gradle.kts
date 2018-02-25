@@ -1,7 +1,9 @@
+val pluginVersions = extra["pluginVersions"] as Map<*, *>
+
 apply { plugin("checkstyle") }
 
 configure<CheckstyleExtension> {
-  toolVersion = "8.8"
+  toolVersion = pluginVersions["checkstyle"] as String
   configFile = file("$rootDir/config/checkstyle/checkstyle.xml")
   isShowViolations = false
 }

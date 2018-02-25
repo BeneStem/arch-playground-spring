@@ -21,20 +21,20 @@ configure<JavaPluginConvention> {
 }
 
 buildscript {
-  val springVersion = "5.0.4.RELEASE"
-  val springBootVersion = "1.5.10.RELEASE"
-  extra["springVersion"] = springVersion
-  extra["springBootVersion"] = springBootVersion
-  extra["edison"] = "1.2.12"
+  project.apply {
+    from("$rootDir/gradle/dependencies.gradle.kts")
+  }
+
+  val gradlePlugins = extra["gradlePlugins"] as Map<*, *>
 
   repositories {
     jcenter()
     maven { setUrl("https://plugins.gradle.org/m2/") }
   }
   dependencies {
-    classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.20")
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-    classpath("com.github.ben-manes:gradle-versions-plugin:0.17.0")
+    classpath(gradlePlugins["git-properties"] as String)
+    classpath(gradlePlugins["spring-boot"] as String)
+    classpath(gradlePlugins["versions"] as String)
   }
 }
 
@@ -42,42 +42,42 @@ repositories {
   jcenter()
 }
 
-val springVersion = extra["springVersion"] as String
-val springBootVersion = extra["springBootVersion"] as String
-val edison = extra["edison"] as String
+val versions = extra["versions"] as Map<*, *>
+val libraries = extra["libraries"] as Map<*, *>
+val testLibraries = extra["testLibraries"] as Map<*, *>
 
-ext["thymeleaf.version"] = "3.0.9.RELEASE"
-ext["thymeleaf-layout-dialect.version"] = "2.3.0"
+ext["thymeleaf.version"] = versions["thymeleaf"]
+ext["thymeleaf-layout-dialect.version"] = versions["thymeleaf-layout-dialect"]
 
 dependencies {
-  "compileOnly"("org.projectlombok:lombok:1.16.20")
-  "compileOnly"("com.google.code.findbugs:annotations:3.0.1")
-  "compileOnly"("org.springframework:spring-context-indexer:$springVersion")
+  "compileOnly"(libraries["lombok"] as String)
+  "compileOnly"(libraries["findbugs-annotations"] as String)
+  "compileOnly"(libraries["spring-context-indexer"] as String)
 
-  "compile"("org.hibernate:hibernate-validator:5.4.2.Final")
-  "compile"("com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20171016.1")
-  "compile"("org.springframework.boot:spring-boot-starter-jetty:$springBootVersion")
-  "compile"("de.otto.edison:edison-core:$edison")
-  "compile"("de.otto.edison:edison-jobs:$edison")
-  "compile"("org.mongodb:mongodb-driver:3.6.3")
-  "compile"("de.otto.edison:edison-mongo:$edison")
-  "compile"("de.otto.edison:edison-hal:2.0.0-m1")
-  "compile"("de.otto.edison:edison-togglz:$edison")
-  "compile"("org.jongo:jongo:1.3.0")
-  "compile"("de.undercouch:bson4jackson:2.9.0")
-  "compile"("de.otto.edison:edison-vault:2.0.4")
-  "compile"("com.damnhandy:handy-uri-templates:2.1.6")
-  "compile"("org.apache.httpcomponents:httpclient:4.5.5")
+  "compile"(libraries["hibernate-validator"] as String)
+  "compile"(libraries["owasp-java-html-sanitizer"] as String)
+  "compile"(libraries["spring-boot-starter-jetty"] as String)
+  "compile"(libraries["edison-core"] as String)
+  "compile"(libraries["edison-jobs"] as String)
+  "compile"(libraries["mongodb-driver"] as String)
+  "compile"(libraries["edison-mongo"] as String)
+  "compile"(libraries["edison-hal"] as String)
+  "compile"(libraries["edison-togglz"] as String)
+  "compile"(libraries["jongo"] as String)
+  "compile"(libraries["bson4jackson"] as String)
+  "compile"(libraries["edison-vault"] as String)
+  "compile"(libraries["handy-uri-templates"] as String)
+  "compile"(libraries["httpclient"] as String)
 
-  "compile"("org.springframework.boot:spring-boot-devtools:$springBootVersion")
+  "compile"(libraries["spring-boot-devtools"] as String)
 
-  "testCompileOnly"("org.projectlombok:lombok:1.16.20")
+  "testCompileOnly"(libraries["lombok"] as String)
 
-  "testCompile"("de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.3")
-  "testCompile"("org.mockito:mockito-core:2.15.0")
-  "testCompile"("de.otto.edison:edison-testsupport:$edison")
-  "testCompile"("com.github.baev:hamcrest-optional:1.0")
-  "testCompile"("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+  "testCompile"(testLibraries["embed-mongo"] as String)
+  "testCompile"(testLibraries["mockito-core"] as String)
+  "testCompile"(testLibraries["edison-testsupport"] as String)
+  "testCompile"(testLibraries["hamcrest-optional"] as String)
+  "testCompile"(testLibraries["spring-boot-starter-test"] as String)
 }
 
 apply {
@@ -110,7 +110,7 @@ tasks {
           val alphaBetaPattern = Regex("^.*[\\.-](alpha|beta|b|rc|cr|m|ea|incubating|atlassian|snap)[\\.\\w\\d-]*$",
             RegexOption.IGNORE_CASE)
           if (candidate.version.matches(alphaBetaPattern)) {
-            reject("Rejected by alpha/beta revision: ${candidate}")
+            reject("Rejected by alpha/beta revision: $candidate")
           }
         }
       }
