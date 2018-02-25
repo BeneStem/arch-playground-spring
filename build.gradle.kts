@@ -21,11 +21,11 @@ configure<JavaPluginConvention> {
 }
 
 buildscript {
-  val springVersion = "5.0.3.RELEASE"
+  val springVersion = "5.0.4.RELEASE"
   val springBootVersion = "1.5.10.RELEASE"
   extra["springVersion"] = springVersion
   extra["springBootVersion"] = springBootVersion
-  extra["edison"] = "1.2.9"
+  extra["edison"] = "1.2.12"
 
   repositories {
     jcenter()
