@@ -1,0 +1,9 @@
+{
+  "env": {
+    "jasmine": true,
+    "protractor": true
+  },
+  "rules": {
+    "no-console": "off"
+  }
+}
