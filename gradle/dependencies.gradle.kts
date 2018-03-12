@@ -7,7 +7,7 @@ val versions = mapOf(
   Pair("hibernate-validator", "5.4.2.Final"),
   Pair("owasp-java-html-sanitizer", "20171016.1"),
   Pair("spring-boot", "1.5.10.RELEASE"),
-  Pair("edison", "1.2.12"),
+  Pair("edison", "1.2.13"),
   Pair("mongodb-driver", "3.6.3"),
   Pair("edison-hal", "2.0.0-m1"),
   Pair("jongo", "1.3.0"),
@@ -22,7 +22,7 @@ val testVersions = mapOf(
   Pair("hamcrest-optional", "1.0")
 )
 val pluginVersions = mapOf(
-  Pair("git-properties", "1.4.20"),
+  Pair("git-properties", "1.4.21"),
   Pair("versions", "0.17.0"),
   Pair("checkstyle", "8.8"),
   Pair("jacoco", "0.8.0"),
