@@ -21,7 +21,7 @@ public class ValidationConfiguration {
 
   @Bean
   public MethodValidationPostProcessor methodValidationPostProcessor(final ValidatorFactory validatorFactory) {
-    final MethodValidationPostProcessor methodValidationPostProcessor = new MethodValidationPostProcessor();
+    final var methodValidationPostProcessor = new MethodValidationPostProcessor();
     methodValidationPostProcessor.setValidatorFactory(validatorFactory);
     return methodValidationPostProcessor;
   }
@@ -29,7 +29,7 @@ public class ValidationConfiguration {
   @Bean
   @Primary
   public Validator configurationPropertiesValidator(final ApplicationContext applicationContext) {
-    final LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+    final var localValidatorFactoryBean = new LocalValidatorFactoryBean();
     localValidatorFactoryBean.setApplicationContext(applicationContext);
     localValidatorFactoryBean.setParameterNameDiscoverer(new CustomParameterNameDiscoverer());
     localValidatorFactoryBean.afterPropertiesSet();

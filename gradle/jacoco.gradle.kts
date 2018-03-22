@@ -9,8 +9,8 @@ configure<JacocoPluginExtension> {
 tasks.withType<JacocoReport> {
   group = "Coverage"
   reports {
-    xml.setEnabled(false)
-    html.setEnabled(true)
+    xml.isEnabled = false
+    html.isEnabled = true
     html.destination = file("$buildDir/reports/coverage/server")
   }
 }

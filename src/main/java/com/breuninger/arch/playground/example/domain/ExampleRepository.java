@@ -8,13 +8,15 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import de.otto.edison.mongo.AbstractMongoRepository;
+import de.otto.edison.mongo.configuration.MongoProperties;
 
 @Repository
 public class ExampleRepository extends AbstractMongoRepository<String, Example> {
 
   private final MongoCollection<Document> collection;
 
-  public ExampleRepository(final MongoDatabase mongoDatabase) {
+  public ExampleRepository(final MongoDatabase mongoDatabase, final MongoProperties mongoProperties) {
+    super(mongoProperties);
     collection = mongoDatabase.getCollection("examples");
   }
 
@@ -40,7 +42,8 @@ public class ExampleRepository extends AbstractMongoRepository<String, Example> 
 
   @Override
   protected void ensureIndexes() {
-    // CompletableFuture.runAsync(() -> collection().createIndex(Indexes.compoundIndex(
-    // Indexes.ascending(BOARD_ID), Indexes.descending(CREATION_DATE)), new IndexOptions().background(true)));
+    //    CompletableFuture.runAsync(
+    //      () -> collection().createIndex(Indexes.compoundIndex(Indexes.ascending(BOARD_ID), Indexes.descending(CREATION_DATE)),
+    //        new IndexOptions().background(true)));
   }
 }

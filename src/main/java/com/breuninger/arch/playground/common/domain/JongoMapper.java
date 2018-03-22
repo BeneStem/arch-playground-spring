@@ -12,15 +12,15 @@ import org.jongo.marshall.jackson.JacksonMapper.Builder;
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 public final class JongoMapper {
 
   private static final Mapper JONGO_MAPPER = new Builder()
     .disable(AUTO_DETECT_GETTERS)
     .disable(AUTO_DETECT_IS_GETTERS)
     .build();
+
+  private JongoMapper() {
+  }
 
   public static <T> Document encode(final T pojo) {
     return toDocument(JONGO_MAPPER.getMarshaller().marshall(pojo));
@@ -38,7 +38,7 @@ public final class JongoMapper {
   private static BsonDocument toBsonDocument(final Document document) {
     // TODO: when jongo adds mongo 3.0 support adjust this statement - can be much shorter
     // Do NOT use JSON.parse, since it has bugs which wont be fixed since it is superseded by JsonReader (JAVA-1841)
-    final BasicDBObject dbObject = new BasicDBObject();
+    final var dbObject = new BasicDBObject();
     document.forEach(dbObject::put);
     return Bson.createDocument(dbObject);
   }

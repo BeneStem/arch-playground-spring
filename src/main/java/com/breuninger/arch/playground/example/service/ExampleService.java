@@ -3,7 +3,6 @@ package com.breuninger.arch.playground.example.service;
 import java.util.Date;
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import com.breuninger.arch.playground.example.domain.Example;
@@ -24,12 +23,8 @@ public class ExampleService {
   }
 
   public Example create(final Example example) {
-    final Date creationDate = new Date();
-    return exampleRepository.create(example.toBuilder()
-      .id(ObjectId.get().toString())
-      .creationDate(creationDate)
-      .lastModificationDate(creationDate)
-      .build());
+    final var creationDate = new Date();
+    return exampleRepository.create(new Example(example.getId(), example.getText(), creationDate, creationDate));
   }
 
   @Gauge(name = "example.count", absolute = true)

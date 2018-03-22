@@ -11,7 +11,7 @@ configure<FindBugsExtension> {
 tasks.withType<FindBugs> {
   group = "Findbugs"
   reports {
-    xml.setEnabled(false)
-    html.setEnabled(true)
+    xml.isEnabled = false
+    html.isEnabled = true
   }
 }

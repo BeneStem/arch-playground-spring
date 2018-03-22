@@ -11,7 +11,7 @@ configure<CheckstyleExtension> {
 tasks.withType<Checkstyle> {
   group = "Checkstyle"
   reports {
-    xml.setEnabled(false)
-    html.setEnabled(true)
+    xml.isEnabled = false
+    html.isEnabled = true
   }
 }

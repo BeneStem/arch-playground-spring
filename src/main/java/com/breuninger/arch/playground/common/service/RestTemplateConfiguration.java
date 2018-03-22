@@ -20,14 +20,14 @@ public class RestTemplateConfiguration {
 
   @Bean
   public RestTemplate restTemplate() {
-    final HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient());
+    final var requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient());
     requestFactory.setConnectTimeout(CONNECT_TIMEOUT);
     requestFactory.setReadTimeout(READ_TIMEOUT);
     return new RestTemplate(requestFactory);
   }
 
   private HttpClient httpClient() {
-    final HttpClientBuilder clientBuilder = HttpClientBuilder.create();
+    final var clientBuilder = HttpClientBuilder.create();
     clientBuilder.useSystemProperties();
     clientBuilder.setDefaultRequestConfig(custom()
       .setCookieSpec(STANDARD)

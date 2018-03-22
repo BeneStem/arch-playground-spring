@@ -8,9 +8,6 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-import lombok.experimental.UtilityClass;
-
-@UtilityClass
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
 public final class SlugificationUtil {
 
@@ -218,9 +215,12 @@ public final class SlugificationUtil {
       .build();
   }
 
+  private SlugificationUtil() {
+  }
+
   private static String noAccents(final String string) {
-    final StringBuilder builder = new StringBuilder(string.length());
-    for (final char letter : Normalizer.normalize(string, Form.NFKC).toCharArray()) {
+    final var builder = new StringBuilder(string.length());
+    for (final var letter : Normalizer.normalize(string, Form.NFKC).toCharArray()) {
       if (CHAR_MAP_UMLAUTE.containsKey(letter)) {
         builder.append(CHAR_MAP_UMLAUTE.get(letter));
       } else if (CHAR_MAP_FOREIGN_CHARS.containsKey(letter)) {

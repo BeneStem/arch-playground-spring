@@ -3,20 +3,21 @@ package com.breuninger.arch.playground.common.job;
 import java.text.MessageFormat;
 import java.util.Date;
 
-import de.otto.edison.jobs.eventbus.JobEventPublisher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JobProgressLogger {
 
-  private final JobEventPublisher jobEventPublisher;
+  private static final Logger LOG = LoggerFactory.getLogger(JobProgressLogger.class);
+
   private final long loggingThresholdPerItems;
-  private final Date JobStartDate;
+  private final Date jobStartDate;
 
   private long nrOfProcessedItems;
 
-  public JobProgressLogger(final JobEventPublisher jobEventPublisher, final long loggingThresholdPerItems) {
-    this.jobEventPublisher = jobEventPublisher;
+  public JobProgressLogger(final long loggingThresholdPerItems) {
     this.loggingThresholdPerItems = loggingThresholdPerItems;
-    JobStartDate = new Date();
+    jobStartDate = new Date();
   }
 
   public void itemProcessed() {
@@ -31,20 +32,20 @@ public class JobProgressLogger {
   }
 
   private void printStatistics() {
-    final long jobRuntimeInSeconds = (System.currentTimeMillis() - JobStartDate.getTime()) / 1000 + 1;
-    jobEventPublisher.info(MessageFormat.format("Processed {0} items. Average Items per Second: {1}", nrOfProcessedItems,
+    final var jobRuntimeInSeconds = (System.currentTimeMillis() - jobStartDate.getTime()) / 1000 + 1;
+    LOG.info(MessageFormat.format("Processed {0} items. Average Items per Second: {1}", nrOfProcessedItems,
       nrOfProcessedItems / jobRuntimeInSeconds));
   }
 
   public void info(final String message) {
-    jobEventPublisher.info(message);
+    LOG.info(message);
   }
 
   public void warn(final String message) {
-    jobEventPublisher.warn(message);
+    LOG.warn(message);
   }
 
   public void error(final String message) {
-    jobEventPublisher.error(message);
+    LOG.error(message);
   }
 }

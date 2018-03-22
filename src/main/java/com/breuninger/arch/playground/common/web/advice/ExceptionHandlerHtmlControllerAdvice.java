@@ -33,14 +33,11 @@ public class ExceptionHandlerHtmlControllerAdvice {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ModelAndView handleBadRequest(final BadRequestException exception) {
     final MappingJackson2JsonView view = new CustomMappingJackson2JsonView();
-    final ModelAndView modelAndView = new ModelAndView(view);
+    final var modelAndView = new ModelAndView(view);
     modelAndView.addObject(exception.getErrors()
       .getFieldErrors()
       .stream()
-      .map(fieldError -> ValidationError.builder()
-        .fieldName(fieldError.getField())
-        .errorMessage(fieldError.getDefaultMessage())
-        .build())
+      .map(fieldError -> new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
       .collect(toList()));
     return modelAndView;
   }
@@ -49,14 +46,11 @@ public class ExceptionHandlerHtmlControllerAdvice {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   protected ModelAndView handleMethodArgumentNotValid(final MethodArgumentNotValidException exception) {
     final MappingJackson2JsonView view = new CustomMappingJackson2JsonView();
-    final ModelAndView modelAndView = new ModelAndView(view);
+    final var modelAndView = new ModelAndView(view);
     modelAndView.addObject(exception.getBindingResult()
       .getFieldErrors()
       .stream()
-      .map(fieldError -> ValidationError.builder()
-        .fieldName(fieldError.getField())
-        .errorMessage(fieldError.getDefaultMessage())
-        .build())
+      .map(fieldError -> new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
       .collect(toList()));
     return modelAndView;
   }
@@ -65,13 +59,11 @@ public class ExceptionHandlerHtmlControllerAdvice {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public ModelAndView handleConstraintViolation(final ConstraintViolationException exception) {
     final MappingJackson2JsonView view = new CustomMappingJackson2JsonView();
-    final ModelAndView modelAndView = new ModelAndView(view);
+    final var modelAndView = new ModelAndView(view);
     modelAndView.addObject(exception.getConstraintViolations()
       .stream()
-      .map(constraintViolation -> ValidationError.builder()
-        .fieldName(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().getName())
-        .errorMessage(constraintViolation.getMessage())
-        .build())
+      .map(constraintViolation -> new ValidationError(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().getName(),
+        constraintViolation.getMessage()))
       .collect(toList()));
     return modelAndView;
   }
@@ -80,11 +72,11 @@ public class ExceptionHandlerHtmlControllerAdvice {
 
     @Override
     protected Object filterModel(final Map<String, Object> model) {
-      final Object result = super.filterModel(model);
+      final var result = super.filterModel(model);
       if (!(result instanceof Map)) {
         return result;
       }
-      final Map map = (Map) result;
+      final var map = (Map) result;
       if (map.size() == 1) {
         return map.values().toArray()[0];
       }

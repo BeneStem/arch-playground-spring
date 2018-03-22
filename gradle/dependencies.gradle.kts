@@ -4,13 +4,13 @@ val versions = mapOf(
   Pair("lombok", "1.16.20"),
   Pair("findbugs", "3.0.1"),
   Pair("spring", "5.0.4.RELEASE"),
-  Pair("hibernate-validator", "5.4.2.Final"),
+  Pair("hibernate-validator", "6.0.7.Final"),
   Pair("owasp-java-html-sanitizer", "20171016.1"),
-  Pair("spring-boot", "1.5.10.RELEASE"),
-  Pair("edison", "1.2.13"),
+  Pair("spring-boot", "2.0.0.RELEASE"),
+  Pair("edison", "2.0.0-m1-SNAPSHOT"),
   Pair("mongodb-driver", "3.6.3"),
   Pair("edison-hal", "2.0.0-m1"),
-  Pair("jongo", "1.3.0"),
+  Pair("jongo", "1.3.1"),
   Pair("bson4jackson", "2.9.0"),
   Pair("edison-vault", "2.0.4"),
   Pair("handy-uri-templates", "2.1.6"),
@@ -18,7 +18,7 @@ val versions = mapOf(
 )
 val testVersions = mapOf(
   Pair("embed-mongo", "2.0.3"),
-  Pair("mockito-core", "2.15.0"),
+  Pair("mockito-core", "2.16.0"),
   Pair("hamcrest-optional", "1.0")
 )
 val pluginVersions = mapOf(
@@ -36,7 +36,12 @@ val libraries = mapOf(
   Pair("hibernate-validator", "org.hibernate:hibernate-validator:${versions["hibernate-validator"]}"),
   Pair("owasp-java-html-sanitizer",
     "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:${versions["owasp-java-html-sanitizer"]}"),
-  Pair("spring-boot-starter-jetty", "org.springframework.boot:spring-boot-starter-jetty:${versions["spring-boot"]}"),
+  Pair("spring-boot-starter-web", "org.springframework.boot:spring-boot-starter-web:${versions["spring-boot"]}"),
+  Pair("spring-boot-starter-actuator", "org.springframework.boot:spring-boot-starter-actuator:${versions["spring-boot"]}"),
+  Pair("spring-boot-starter-thymeleaf", "org.springframework.boot:spring-boot-starter-thymeleaf:${versions["spring-boot"]}"),
+  Pair("spring-boot-starter-json", "org.springframework.boot:spring-boot-starter-json:${versions["spring-boot"]}"),
+  Pair("spring-boot-starter", "org.springframework.boot:spring-boot-starter:${versions["spring-boot"]}"),
+  Pair("spring-boot-starter-logging", "org.springframework.boot:spring-boot-starter-logging:${versions["spring-boot"]}"),
   Pair("edison-core", "de.otto.edison:edison-core:${versions["edison"]}"),
   Pair("edison-jobs", "de.otto.edison:edison-jobs:${versions["edison"]}"),
   Pair("mongodb-driver", "org.mongodb:mongodb-driver:${versions["mongodb-driver"]}"),

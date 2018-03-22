@@ -4,14 +4,17 @@ import static de.otto.edison.jobs.definition.DefaultJobDefinition.cronJobDefinit
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import de.otto.edison.jobs.definition.JobDefinition;
-import de.otto.edison.jobs.eventbus.JobEventPublisher;
 import de.otto.edison.jobs.service.JobRunnable;
 
 @Component
 public class ExampleJob implements JobRunnable {
+
+  private static final Logger LOG = LoggerFactory.getLogger(ExampleJob.class);
 
   private static final String JOB_TYPE = "ExampleJob";
 
@@ -27,7 +30,8 @@ public class ExampleJob implements JobRunnable {
   }
 
   @Override
-  public void execute(final JobEventPublisher eventPublisher) {
-    eventPublisher.info("DING");
+  public boolean execute() {
+    LOG.info("DING");
+    return true;
   }
 }

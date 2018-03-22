@@ -53,13 +53,13 @@ public class ExampleRestController {
 
   @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<Example> create(@RequestBody final Example example, final Errors errors) {
-    final Example sanitizedExample = example.sanitize();
+    final var sanitizedExample = example.sanitize();
     validator.validate(sanitizedExample, errors);
     if (errors.hasErrors()) {
       throw badRequest(errors);
     }
 
-    final Example createdExample = exampleService.create(sanitizedExample);
+    final var createdExample = exampleService.create(sanitizedExample);
     return ResponseEntity.ok().contentType(APPLICATION_JSON).body(createdExample);
   }
 }

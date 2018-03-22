@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.net.URI;
-import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,8 @@ public class ExampleRestControllerTest extends AbstractWebIntegrationTest {
   @Test
   public void expectToGetExamples() throws Exception {
     // given
-    final Example example = Example.builder().text("test").build();
-    final List<Example> examples = singletonList(example);
+    final var example = new Example(null, "test", null, null);
+    final var examples = singletonList(example);
     given(exampleService.findAll()).willReturn(examples);
 
     // when & then

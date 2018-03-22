@@ -2,21 +2,22 @@ package com.breuninger.arch.playground.common.job;
 
 import java.time.Duration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.IntervalTask;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
-
 import de.otto.edison.jobs.service.JobDefinitionService;
 import de.otto.edison.jobs.service.JobService;
 
-@Slf4j
 @Component
 @Profile("!test")
 public final class JobWatcher implements SchedulingConfigurer {
+
+  private static final Logger LOG = LoggerFactory.getLogger(JobWatcher.class);
 
   private final JobDefinitionService jobDefinitionService;
   private final JobService jobService;

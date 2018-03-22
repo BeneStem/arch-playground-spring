@@ -24,7 +24,7 @@ public class ExampleHtmlController {
   @Timed
   @GetMapping(produces = TEXT_HTML_VALUE)
   public ModelAndView findAll() {
-    final ModelMap model = new ModelMap();
+    final var model = new ModelMap();
     model.put("examples", exampleService.findAll());
     return new ModelAndView("exampleOverviewPage.html", model);
   }

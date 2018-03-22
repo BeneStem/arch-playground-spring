@@ -4,14 +4,14 @@ apply { plugin("pmd") }
 
 configure<PmdExtension> {
   toolVersion = pluginVersions["pmd"] as String
-  ruleSetFiles = files("${rootDir}/config/pmd/ruleset.xml")
+  ruleSetFiles = files("$rootDir/config/pmd/ruleset.xml")
   isConsoleOutput = false
 }
 
 tasks.withType<Pmd> {
   group = "PMD"
   reports {
-    xml.setEnabled(false)
-    html.setEnabled(true)
+    xml.isEnabled = false
+    html.isEnabled = true
   }
 }
