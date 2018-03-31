@@ -14,10 +14,11 @@ const FriendlyErrors = require('friendly-errors-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const {CheckerPlugin, TsConfigPathsPlugin} = require('awesome-typescript-loader');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+// const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-eval-source-map',
   target: 'web',
   entry: {
@@ -25,8 +26,7 @@ module.exports = {
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
       path.resolve(appDirectory, 'src/client/index.tsx')
-    ],
-    vendor: []
+    ]
   },
   output: {
     path: path.resolve(appDirectory, 'src/main/resources/static'),
@@ -202,6 +202,12 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
+    runtimeChunk: true
+  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
@@ -216,21 +222,19 @@ module.exports = {
     new CheckerPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new WatchMissingNodeModulesPlugin(path.resolve(appDirectory, 'node_modules')),
+    // new WatchMissingNodeModulesPlugin(path.resolve(appDirectory, 'node_modules')),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'js/[name].js'
-    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve(appDirectory, 'src/client/resources/index.html')
     })
   ],
   node: {
+    gram: 'empty',
     fs: 'empty',
     net: 'empty',
-    tls: 'empty'
+    tls: 'empty',
+    child_process: 'empty'
   },
   performance: {
     hints: false

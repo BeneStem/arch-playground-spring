@@ -4,13 +4,13 @@ val versions = mapOf(
   Pair("lombok", "1.16.20"),
   Pair("findbugs", "3.0.1"),
   Pair("spring", "5.0.4.RELEASE"),
-  Pair("hibernate-validator", "6.0.7.Final"),
+  Pair("hibernate-validator", "6.0.9.Final"),
   Pair("owasp-java-html-sanitizer", "20171016.1"),
   Pair("spring-boot", "2.0.0.RELEASE"),
   Pair("edison", "2.0.0-m1-SNAPSHOT"),
   Pair("mongodb-driver", "3.6.3"),
   Pair("edison-hal", "2.0.0-m1"),
-  Pair("jongo", "1.3.1"),
+  Pair("jongo", "1.4.0"),
   Pair("bson4jackson", "2.9.0"),
   Pair("edison-vault", "2.0.4"),
   Pair("handy-uri-templates", "2.1.6"),
@@ -18,7 +18,7 @@ val versions = mapOf(
 )
 val testVersions = mapOf(
   Pair("embed-mongo", "2.0.3"),
-  Pair("mockito-core", "2.16.0"),
+  Pair("mockito-core", "2.17.0"),
   Pair("hamcrest-optional", "1.0")
 )
 val pluginVersions = mapOf(
