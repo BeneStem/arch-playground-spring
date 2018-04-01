@@ -1,8 +1,8 @@
 # arch-playground 
 
-> "TODO" - Someone Nice
+> "How can I die, when I have so much of the Universe left to explore?" - Stephen Hawking
 
-Make breuninger architecture great again.
+Have fun hacking.
 
 ## Roadmap
 
@@ -30,7 +30,7 @@ Start server:
 
     $ java -jar build/libs/arch-playground.jar
 
-Start client in dev mode:
+Start client in dev mode: (:warning: not working yet!)
 
     $ yarn start
 
@@ -48,11 +48,23 @@ Start server in dev mode:
 
     $ gradle test
 
+### Test e2e
+
+#### Test e2e on selenium grid
+
+    $ yarn test:e2e
+    
+#### Test e2e locally
+
+    $ yarn webdriver:install
+    $ yarn webdriver:start
+    $ yarn test:e2e:local
+
 ## Dependency Update
 
 Client dependencies:
 
-    $ yarn upgrade && yarn upgrade-interactive
+    $ yarn dependency-update
 
 Server dependencies:
 
