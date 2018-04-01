@@ -10,8 +10,8 @@ const webpack = require('webpack');
 
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FriendlyErrors = require('friendly-errors-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const {CheckerPlugin, TsConfigPathsPlugin} = require('awesome-typescript-loader');
 // const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
@@ -19,50 +19,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   target: 'web',
   entry: {
-    main: [
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
-      path.resolve(appDirectory, 'src/client/index.tsx')
-    ]
+    main: path.resolve(appDirectory, 'src/client/index.tsx')
   },
   output: {
     path: path.resolve(appDirectory, 'src/main/resources/static'),
     pathinfo: true,
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].chunk.js',
-    publicPath: '/',
+    publicPath: './',
     devtoolModuleFilenameTemplate: (info) => {
-      return path.resolve(info.absoluteResourcePath);
-    }
-  },
-  devServer: {
-    proxy: {
-      '/products': {
-        target: 'http://localhost:8080',
-        secure: true
-      }
-    },
-    compress: true,
-    clientLogLevel: 'none',
-    quiet: true,
-    watchOptions: {
-      ignored: /node_modules/
-    },
-    overlay: false,
-    hot: true,
-    contentBase: 'src/main/resources/static',
-    publicPath: '/',
-    port: 3000,
-    historyApiFallback: {
-      disableDotRule: true
-    },
-    stats: {
-      colors: true,
-      chunks: false,
-      'errors-only': true
+      return path.relative(path.resolve(appDirectory, 'src/client'), info.absoluteResourcePath);
     }
   },
   resolve: {
@@ -102,7 +71,7 @@ module.exports = {
         ],
         loader: 'file-loader',
         options: {
-          name: 'media/[name].[ext]'
+          name: 'media/[name].[hash:8].[ext]'
         }
       },
       {
@@ -117,7 +86,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'media/[name].[ext]'
+              name: 'media/[name].[hash:8].[ext]'
             }
           },
           {
@@ -156,20 +125,15 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         include: path.resolve(appDirectory, 'src/client'),
-        use: [
-          {
-            loader: 'awesome-typescript-loader',
-            options: {
-              useBabel: true
-            }
-          }
-        ]
+        loader: 'awesome-typescript-loader',
+        options: {
+          useBabel: true
+        }
       },
       {
         test: /\.css$/,
         use: [
-          // isomorphic-style-loader
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -217,13 +181,14 @@ module.exports = {
       __DEVTOOLS__: true
     }),
     new FriendlyErrors(),
-    new DashboardPlugin(),
     new CaseSensitivePathsPlugin(),
     new CheckerPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     // new WatchMissingNodeModulesPlugin(path.resolve(appDirectory, 'node_modules')),
     new webpack.NoEmitOnErrorsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[contenthash:8].css'
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: path.resolve(appDirectory, 'src/client/resources/index.html')

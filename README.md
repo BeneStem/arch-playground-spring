@@ -14,7 +14,7 @@ Install dependencies:
 
     $ yarn install
 
-## Build
+## Production
 
 Build client:
 
@@ -24,17 +24,17 @@ Build server:
 
     $ gradle build
 
-## Startup
-
 Start server:
 
     $ java -jar build/libs/arch-playground.jar
 
-Start client in dev mode: (:warning: not working yet!)
+## Development
+
+Start client watcher:
 
     $ yarn start
 
-Start server in dev mode:
+Start server:
 
     $ gradle bootRun [--debug-jvm]
 
