@@ -1,6 +1,6 @@
 'use strict';
 
-const url = '/arch-playground/internal/status';
+const url = '/arch-playground-spring/internal/status';
 
 class InternalStatusPage {
   static visit() {

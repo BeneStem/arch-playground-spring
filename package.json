@@ -1,5 +1,5 @@
 {
-  "name": "arch-playground",
+  "name": "arch-playground-spring",
   "version": "1.0.0-SNAPSHOT",
   "description": "Make breuninger architecture great again.",
   "main": "index.js",
@@ -100,7 +100,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:BeneStem/arch-playground.git"
+    "url": "git@github.com:BeneStem/arch-playground-spring.git"
   },
   "devDependencies": {
     "@commitlint/cli": "6.1.3",

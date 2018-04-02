@@ -1,2 +1,2 @@
 rootProject.buildFileName = 'build.gradle.kts'
-rootProject.name = 'arch-playground'
+rootProject.name = 'arch-playground-spring'

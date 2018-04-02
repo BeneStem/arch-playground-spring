@@ -1,7 +1,7 @@
 #logging.config.classpath: "logback-console.xml"
 server:
   port: "${PORT:4242}"
-  servlet.context-path: "/arch-playground"
+  servlet.context-path: "/arch-playground-spring"
   tomcat:
     accesslog:
       enabled: true
@@ -25,12 +25,12 @@ info:
     commit: "${edison.status.vcs.commit:}"
     version: "${edison.status.vcs.version:}"
 spring:
-  application.name: "arch-playground"
+  application.name: "arch-playground-spring"
   thymeleaf.mode: "HTML"
   jackson.default-property-inclusion: NON_NULL
 edison:
   application:
-    title: "arch-playground"
+    title: "arch-playground-spring"
     group: "arch"
     environment: "${GROUP:local}"
     description: "Make breuninger architecture great again."
@@ -44,7 +44,7 @@ edison:
   gracefulshutdown.enabled: false
   mongo:
     host: "localhost"
-    db: "arch-playground"
+    db: "arch-playground-spring"
     maxWaitTime: 50
     connectTimeout: 150
     defaultReadTimeout: 1500

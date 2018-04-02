@@ -1,5 +1,5 @@
 <configuration>
-  <contextName>arch-playground-test</contextName>
+  <contextName>arch-playground-spring-test</contextName>
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>%d{ISO8601} %-5p logger="%c" message="%m" thread="%t" %n</pattern>

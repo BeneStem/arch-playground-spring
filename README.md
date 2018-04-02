@@ -1,4 +1,4 @@
-# arch-playground 
+# arch-playground-spring 
 
 > "How can I die, when I have so much of the Universe left to explore?" - Stephen Hawking
 
@@ -26,7 +26,7 @@ Build server:
 
 Start server:
 
-    $ java -jar build/libs/arch-playground.jar
+    $ java -jar build/libs/arch-playground-spring.jar
 
 ## Development
 
