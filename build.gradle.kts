@@ -72,6 +72,7 @@ dependencies {
   "compile"(libraries["httpclient"] as String)
 
   // TODO remove with edison release version
+  "compile"(libraries["spring-context-support"] as String)
   "compile"(libraries["spring-boot-starter-web"] as String)
   "compile"(libraries["spring-boot-starter-actuator"] as String)
   "compile"(libraries["spring-boot-starter-thymeleaf"] as String)
