@@ -24,8 +24,8 @@ val testVersions = mapOf(
 val pluginVersions = mapOf(
   Pair("git-properties", "1.4.21"),
   Pair("versions", "0.17.0"),
-  Pair("checkstyle", "8.8"),
-  Pair("jacoco", "0.8.0"),
+  Pair("checkstyle", "8.9"),
+  Pair("jacoco", "0.8.1"),
   Pair("pmd", "5.8.1")
 )
 

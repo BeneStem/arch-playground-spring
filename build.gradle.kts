@@ -99,7 +99,7 @@ apply {
   plugin("com.github.ben-manes.versions")
 
   from("$rootDir/gradle/checkstyle.gradle.kts")
-  from("$rootDir/gradle/findbugs.gradle.kts")
+  // from("$rootDir/gradle/findbugs.gradle.kts")
   from("$rootDir/gradle/pmd.gradle.kts")
   from("$rootDir/gradle/test.gradle.kts")
   from("$rootDir/gradle/jacoco.gradle.kts")
