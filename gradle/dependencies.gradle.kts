@@ -1,7 +1,7 @@
 val versions = mapOf(
   Pair("thymeleaf", "3.0.9.RELEASE"),
   Pair("thymeleaf-layout-dialect", "2.3.0"),
-  Pair("lombok", "1.16.20"),
+  Pair("lombok", "1.16.21"),
   Pair("findbugs", "3.0.1"),
   Pair("spring", "5.0.5.RELEASE"),
   Pair("hibernate-validator", "6.0.9.Final"),
@@ -30,7 +30,8 @@ val pluginVersions = mapOf(
 )
 
 val libraries = mapOf(
-  Pair("lombok", "org.projectlombok:lombok:${versions["lombok"]}"),
+  // revert to maven repository once 1.16.21 is released
+  Pair("lombok", "libs/lombok-edge.jar"),
   Pair("findbugs-annotations", "com.google.code.findbugs:annotations:${versions["findbugs"]}"),
   Pair("spring-context-indexer", "org.springframework:spring-context-indexer:${versions["spring"]}"),
   Pair("spring-context-support", "org.springframework:spring-context-support:${versions["spring"]}"),

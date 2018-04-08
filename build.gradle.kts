@@ -52,8 +52,8 @@ ext["thymeleaf.version"] = versions["thymeleaf"]
 ext["thymeleaf-layout-dialect.version"] = versions["thymeleaf-layout-dialect"]
 
 dependencies {
-  // TODO include again when jdk10 support is released
-  // "compileOnly"(libraries["lombok"] as String)
+  // remove files once 1.16.21 is released
+  "compileOnly"(files(libraries["lombok"] as String))
   "compileOnly"(libraries["findbugs-annotations"] as String)
   "compileOnly"(libraries["spring-context-indexer"] as String)
 
@@ -82,8 +82,8 @@ dependencies {
 
   "compile"(libraries["spring-boot-devtools"] as String)
 
-  // TODO include again when jdk10 support is released
-  // "testCompileOnly"(libraries["lombok"] as String)
+  // remove files once 1.16.21 is released
+  "testCompileOnly"(files(libraries["lombok"] as String))
 
   "testCompile"(testLibraries["embed-mongo"] as String)
   "testCompile"(testLibraries["mockito-core"] as String)
