@@ -29,7 +29,7 @@ public class ExampleRestControllerTest extends AbstractWebIntegrationTest {
   @Test
   public void expectToGetExamples() throws Exception {
     // given
-    final var example = new Example(null, "test", null, null);
+    final var example = Example.builder().text("test").build();
     final var examples = singletonList(example);
     given(exampleService.findAll()).willReturn(examples);
 

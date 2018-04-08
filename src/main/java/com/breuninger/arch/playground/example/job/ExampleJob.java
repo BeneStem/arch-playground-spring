@@ -4,17 +4,16 @@ import static de.otto.edison.jobs.definition.DefaultJobDefinition.cronJobDefinit
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 import de.otto.edison.jobs.definition.JobDefinition;
 import de.otto.edison.jobs.service.JobRunnable;
 
+@Slf4j
 @Component
 public class ExampleJob implements JobRunnable {
-
-  private static final Logger LOG = LoggerFactory.getLogger(ExampleJob.class);
 
   private static final String JOB_TYPE = "ExampleJob";
 

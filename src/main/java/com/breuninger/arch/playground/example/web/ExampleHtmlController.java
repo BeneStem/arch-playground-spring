@@ -11,15 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.breuninger.arch.playground.example.service.ExampleService;
 import com.codahale.metrics.annotation.Timed;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Controller
 @RequestMapping("/examples")
 public class ExampleHtmlController {
 
   private final ExampleService exampleService;
-
-  public ExampleHtmlController(final ExampleService exampleService) {
-    this.exampleService = exampleService;
-  }
 
   @Timed
   @GetMapping(produces = TEXT_HTML_VALUE)

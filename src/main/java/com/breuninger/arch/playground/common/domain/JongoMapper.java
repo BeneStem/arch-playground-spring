@@ -12,15 +12,15 @@ import org.jongo.marshall.jackson.JacksonMapper.Builder;
 import com.mongodb.BasicDBObject;
 import com.mongodb.util.JSON;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public final class JongoMapper {
 
   private static final Mapper JONGO_MAPPER = new Builder()
     .disable(AUTO_DETECT_GETTERS)
     .disable(AUTO_DETECT_IS_GETTERS)
     .build();
-
-  private JongoMapper() {
-  }
 
   public static <T> Document encode(final T pojo) {
     return toDocument(JONGO_MAPPER.getMarshaller().marshall(pojo));

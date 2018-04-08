@@ -3,12 +3,10 @@ package com.breuninger.arch.playground.common.job;
 import java.text.MessageFormat;
 import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class JobProgressLogger {
-
-  private static final Logger LOG = LoggerFactory.getLogger(JobProgressLogger.class);
 
   private final long loggingThresholdPerItems;
   private final Date jobStartDate;

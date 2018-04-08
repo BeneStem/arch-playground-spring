@@ -25,33 +25,35 @@ public class ExceptionHandlerRestControllerAdvice extends ResponseEntityExceptio
   @ExceptionHandler(BadRequestException.class)
   public ResponseEntity<List<ValidationError>> handleBadRequest(final BadRequestException exception) {
     return ResponseEntity.badRequest()
-      .body(exception.getErrors()
-        .getFieldErrors()
-        .stream()
-        .map(fieldError -> new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
+      .body(exception.getErrors().getFieldErrors().stream()
+        .map(fieldError -> ValidationError.builder()
+          .fieldName(fieldError.getField())
+          .errorMessage(fieldError.getDefaultMessage())
+          .build())
         .collect(toList()));
   }
 
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception,
-                                                                final HttpHeaders headers, final HttpStatus status,
-                                                                final WebRequest request) {
+                                                                final HttpHeaders headers,
+                                                                final HttpStatus status, final WebRequest request) {
     return ResponseEntity.badRequest()
-      .body(exception.getBindingResult()
-        .getFieldErrors()
-        .stream()
-        .map(fieldError -> new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
+      .body(exception.getBindingResult().getFieldErrors().stream()
+        .map(fieldError -> ValidationError.builder()
+          .fieldName(fieldError.getField())
+          .errorMessage(fieldError.getDefaultMessage())
+          .build())
         .collect(toList()));
   }
 
   @ExceptionHandler(ConstraintViolationException.class)
   public ResponseEntity<List<ValidationError>> handleConstraintViolation(final ConstraintViolationException exception) {
     return ResponseEntity.badRequest()
-      .body(exception.getConstraintViolations()
-        .stream()
-        .map(
-          constraintViolation -> new ValidationError(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().getName(),
-            constraintViolation.getMessage()))
+      .body(exception.getConstraintViolations().stream()
+        .map(constraintViolation -> ValidationError.builder()
+          .fieldName(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().getName())
+          .errorMessage(constraintViolation.getMessage())
+          .build())
         .collect(toList()));
   }
 }

@@ -25,17 +25,15 @@ import com.breuninger.arch.playground.example.service.ExampleService;
 import com.breuninger.arch.playground.toggle.domain.Features;
 import com.codahale.metrics.annotation.Timed;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/examples")
 public class ExampleRestController {
 
   private final Validator validator;
   private final ExampleService exampleService;
-
-  public ExampleRestController(final Validator validator, final ExampleService exampleService) {
-    this.validator = validator;
-    this.exampleService = exampleService;
-  }
 
   @Timed
   @GetMapping(produces = APPLICATION_JSON_VALUE)

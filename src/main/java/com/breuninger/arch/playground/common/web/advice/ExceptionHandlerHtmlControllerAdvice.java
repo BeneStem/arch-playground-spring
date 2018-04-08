@@ -37,7 +37,10 @@ public class ExceptionHandlerHtmlControllerAdvice {
     modelAndView.addObject(exception.getErrors()
       .getFieldErrors()
       .stream()
-      .map(fieldError -> new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
+      .map(fieldError -> ValidationError.builder()
+        .fieldName(fieldError.getField())
+        .errorMessage(fieldError.getDefaultMessage())
+        .build())
       .collect(toList()));
     return modelAndView;
   }
@@ -50,7 +53,10 @@ public class ExceptionHandlerHtmlControllerAdvice {
     modelAndView.addObject(exception.getBindingResult()
       .getFieldErrors()
       .stream()
-      .map(fieldError -> new ValidationError(fieldError.getField(), fieldError.getDefaultMessage()))
+      .map(fieldError -> ValidationError.builder()
+        .fieldName(fieldError.getField())
+        .errorMessage(fieldError.getDefaultMessage())
+        .build())
       .collect(toList()));
     return modelAndView;
   }
@@ -62,8 +68,10 @@ public class ExceptionHandlerHtmlControllerAdvice {
     final var modelAndView = new ModelAndView(view);
     modelAndView.addObject(exception.getConstraintViolations()
       .stream()
-      .map(constraintViolation -> new ValidationError(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().getName(),
-        constraintViolation.getMessage()))
+      .map(constraintViolation -> ValidationError.builder()
+        .fieldName(((PathImpl) constraintViolation.getPropertyPath()).getLeafNode().getName())
+        .errorMessage(constraintViolation.getMessage())
+        .build())
       .collect(toList()));
     return modelAndView;
   }

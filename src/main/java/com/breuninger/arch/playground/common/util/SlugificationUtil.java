@@ -8,6 +8,9 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 @SuppressWarnings("checkstyle:MultipleStringLiterals")
 public final class SlugificationUtil {
 
@@ -213,9 +216,6 @@ public final class SlugificationUtil {
       // special characters
       .put('+', "plus")
       .build();
-  }
-
-  private SlugificationUtil() {
   }
 
   private static String noAccents(final String string) {
