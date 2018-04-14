@@ -12,7 +12,10 @@ Have fun hacking.
 
 > Use [IntelliJ](https://www.jetbrains.com/idea/download) for coding.
 
-Simply open the cloned github folder and the gradle import wizard should pop up.
+1. Simply **open** the cloned github folder and the gradle import wizard should pop up.
+2. After gradle is done setting up the project enable annotation processing: **Settings => Build, Execution, Development => Compiler => Annotation Processors => Enable annotation processing**
+
+### Dependencies
 
 Install client dependencies:
 
