@@ -10,7 +10,11 @@ Have fun hacking.
 
 ## Setup
 
-Install dependencies:
+> Use [IntelliJ](https://www.jetbrains.com/idea/download) for coding.
+
+Simply open the cloned github folder and the gradle import wizard should pop up.
+
+Install client dependencies:
 
     $ yarn install
 
