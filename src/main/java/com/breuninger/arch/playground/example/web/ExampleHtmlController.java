@@ -12,6 +12,8 @@ import com.breuninger.arch.playground.example.service.ExampleService;
 
 import lombok.AllArgsConstructor;
 
+import io.micrometer.core.annotation.Timed;
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/examples")
@@ -19,6 +21,7 @@ public class ExampleHtmlController {
 
   private final ExampleService exampleService;
 
+  @Timed("http.examples.findAll")
   @GetMapping(produces = TEXT_HTML_VALUE)
   public ModelAndView findAll() {
     final var model = new ModelMap();

@@ -26,6 +26,8 @@ import com.breuninger.arch.playground.toggle.domain.Features;
 
 import lombok.AllArgsConstructor;
 
+import io.micrometer.core.annotation.Timed;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/examples")
@@ -34,6 +36,7 @@ public class ExampleRestController {
   private final Validator validator;
   private final ExampleService exampleService;
 
+  @Timed("rest.examples.findAll")
   @GetMapping(produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Example>> findAll() {
     if (!Features.TEST_TOGGLE.isActive()) {
@@ -47,6 +50,7 @@ public class ExampleRestController {
       .body(exampleService.findAll());
   }
 
+  @Timed("rest.examples.create")
   @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<Example> create(@RequestBody final Example example, final Errors errors) {
     final var sanitizedExample = example.sanitize();
