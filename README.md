@@ -12,8 +12,9 @@ Have fun hacking.
 
 > Use [IntelliJ](https://www.jetbrains.com/idea/download) for coding.
 
-1. Simply **open** the cloned github folder and the gradle import wizard should pop up.
-2. After gradle is done setting up the project enable annotation processing: **Settings => Build, Execution, Development => Compiler => Annotation Processors => Enable annotation processing**
+1. Before opening anything install the *Lombok Plugin*: **Settings => Plugins => Browse repositories... => search for "Lombok Plugin" => Install => Restart IntelliJ**
+2. **Open** the cloned github folder and the gradle import wizard should pop up.
+3. After gradle is done setting up the project enable annotation processing: **Settings => Build, Execution, Development => Compiler => Annotation Processors => Enable annotation processing**
 
 ### Dependencies
 
