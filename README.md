@@ -41,6 +41,10 @@ Start client watcher:
 Start server:
 
     $ gradle bootRun [--debug-jvm]
+    
+You may need to set jvm args if using java 10
+
+    $ --illegal-access=deny --add-opens java.base/java.util=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
 
 ## Testing
 
