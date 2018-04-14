@@ -11,10 +11,11 @@ Have fun hacking.
 ## Setup
 
 > Use [IntelliJ](https://www.jetbrains.com/idea/download) for coding.
-
-1. Before opening anything install the *Lombok Plugin*: **Settings => Plugins => Browse repositories... => search for "Lombok Plugin" => Install => Restart IntelliJ**
-2. **Open** the cloned github folder and the gradle import wizard should pop up.
-3. After gradle is done setting up the project enable annotation processing: **Settings => Build, Execution, Development => Compiler => Annotation Processors => Enable annotation processing**
+1. Install jdk10 on you machine 
+2. Install and start mongodb on you machine
+3. Before opening anything install the *Lombok Plugin*: **Settings => Plugins => Browse repositories... => search for "Lombok Plugin" => Install => Restart IntelliJ**
+4. **Open** the cloned github folder and the gradle import wizard should pop up.
+5. After gradle is done setting up the project enable annotation processing: **Settings => Build, Execution, Development => Compiler => Annotation Processors => Enable annotation processing**
 
 ### Dependencies
 
