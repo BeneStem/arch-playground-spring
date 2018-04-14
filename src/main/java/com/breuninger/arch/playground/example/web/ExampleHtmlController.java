@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.breuninger.arch.playground.example.service.ExampleService;
-import com.codahale.metrics.annotation.Timed;
 
 import lombok.AllArgsConstructor;
 
@@ -20,7 +19,6 @@ public class ExampleHtmlController {
 
   private final ExampleService exampleService;
 
-  @Timed
   @GetMapping(produces = TEXT_HTML_VALUE)
   public ModelAndView findAll() {
     final var model = new ModelMap();

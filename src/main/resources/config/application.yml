@@ -7,10 +7,14 @@ server:
       enabled: true
       pattern: "combined"
 management:
+  metrics.distribution:
+      percentiles.http.server.requests: "0.95, 0.99"
+      percentiles-histogram.http.server.requests: true
+      sla.http.server.requests: "10ms, 100ms"
+  health.diskspace.enabled: false
   endpoints.web:
     base-path: "/internal"
     exposure.include: "*"
-  health.diskspace.enabled: false
   endpoint:
     env:
       enabled: true

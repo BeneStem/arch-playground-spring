@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.breuninger.arch.playground.example.domain.Example;
 import com.breuninger.arch.playground.example.service.ExampleService;
 import com.breuninger.arch.playground.toggle.domain.Features;
-import com.codahale.metrics.annotation.Timed;
 
 import lombok.AllArgsConstructor;
 
@@ -35,7 +34,6 @@ public class ExampleRestController {
   private final Validator validator;
   private final ExampleService exampleService;
 
-  @Timed
   @GetMapping(produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Example>> findAll() {
     if (!Features.TEST_TOGGLE.isActive()) {
