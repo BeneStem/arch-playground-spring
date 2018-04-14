@@ -32,6 +32,23 @@ Start server:
 
     $ java -jar build/libs/arch-playground-spring.jar
 
+### Endpoints
+
+* [Examples](http://localhost:4242/arch-playground-spring/examples)
+* [Status](http://localhost:4242/arch-playground-spring/internal/status)
+* [Loggers](http://localhost:4242/arch-playground-spring/internal/loggers)
+* [Jobdefinitions](http://localhost:4242/arch-playground-spring/internal/jobdefinitions)
+* [Jobs](http://localhost:4242/arch-playground-spring/internal/jobs)
+* [Toggles](http://localhost:4242/arch-playground-spring/internal/toggles/console/index)
+* [Health](http://localhost:4242/arch-playground-spring/internal/health)
+* [Metrics](http://localhost:4242/arch-playground-spring/internal/metrics)
+* [Httptrace](http://localhost:4242/arch-playground-spring/internal/httptrace)
+* [Info](http://localhost:4242/arch-playground-spring/internal/info)
+* [Mappings](http://localhost:4242/arch-playground-spring/internal/mappings)
+* [Conditions](http://localhost:4242/arch-playground-spring/internal/conditions)
+* [Env](http://localhost:4242/arch-playground-spring/internal/env)
+* [Beans](http://localhost:4242/arch-playground-spring/internal/beans)
+
 ## Development
 
 Start client watcher:
