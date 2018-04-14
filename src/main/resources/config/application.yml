@@ -7,7 +7,9 @@ server:
       enabled: true
       pattern: "combined"
 management:
-  endpoints.web.base-path: "/internal"
+  endpoints.web:
+    base-path: "/internal"
+    exposure.include: "*"
   health.diskspace.enabled: false
   endpoint:
     env:
