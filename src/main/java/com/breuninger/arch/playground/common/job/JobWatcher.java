@@ -8,11 +8,11 @@ import org.springframework.scheduling.config.IntervalTask;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.stereotype.Component;
 
+import com.breuninger.boot.jobs.service.JobDefinitionService;
+import com.breuninger.boot.jobs.service.JobService;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import de.otto.edison.jobs.service.JobDefinitionService;
-import de.otto.edison.jobs.service.JobService;
 
 @Slf4j
 @AllArgsConstructor

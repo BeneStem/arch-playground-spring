@@ -2,6 +2,7 @@ package com.breuninger.arch.playground.example.web;
 
 import static java.util.Collections.singletonList;
 
+import static org.mockito.BDDMockito.given;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,7 +31,7 @@ public class ExampleRestControllerTest extends AbstractWebIntegrationTest {
     // given
     final var example = Example.builder().text("test").build();
     final var examples = singletonList(example);
-    // given(exampleService.findAll()).willReturn(examples);
+    given(exampleService.findAll()).willReturn(examples);
 
     // when & then
     mvc.perform(get(URI.create("/examples"))

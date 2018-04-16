@@ -15,26 +15,15 @@ management:
   endpoints.web:
     base-path: "/internal"
     exposure.include: "*"
-  endpoint:
-    env:
-      enabled: true
-    health:
-      enabled: true
-    loggers:
-      enabled: true
-    metrics:
-      enabled: true
-    httptrace:
-      enabled: true
 info:
   build:
-    commit: "${edison.status.vcs.commit:}"
-    version: "${edison.status.vcs.version:}"
+    commit: "${breuninger.status.vcs.commit:}"
+    version: "${breuninger.status.vcs.version:}"
 spring:
   application.name: "arch-playground-spring"
   thymeleaf.mode: "HTML"
   jackson.default-property-inclusion: NON_NULL
-edison:
+breuninger:
   application:
     title: "arch-playground-spring"
     group: "arch"
@@ -42,7 +31,6 @@ edison:
     description: "Make breuninger architecture great again."
     management.base-path: "/internal"
   status:
-    redirect-internal.enabled: false
     team:
       name: "arch"
       technical-contact: "bene@breuninger.de"
@@ -59,15 +47,11 @@ edison:
     connectionpool:
       minSize: 1
       maxSize: 100
-    blockedConnectionMultiplier: 2
-#  metrics:
-#    graphite:
-#      host:  "carbon-relay.otto.nexinto.com"
-#      port: 2003
+      blocked-connection-multiplier: 2
   vault:
     enabled: false
     base-url: "doesnotmatter"
-#    properties: "edison.mongo.user,edison.mongo.password,user.session-management.owt-validation.signature.key,user.session-management.owt-validation.uniqueUserId.key,user.session-management.lid-validation.key,user.loginRedirectTokenGenerator.key,profile.api.users.user,profile.api.users.password,externalProxy.user,externalProxy.password,social.tags.export.api.user,social.tags.export.api.password,comscore.board-report.password,comscore.board-report.user"
+#    properties: "breuninger.mongo.user,breuninger.mongo.password,user.session-management.owt-validation.signature.key,user.session-management.owt-validation.uniqueUserId.key,user.session-management.lid-validation.key,user.loginRedirectTokenGenerator.key,profile.api.users.user,profile.api.users.password,externalProxy.user,externalProxy.password,social.tags.export.api.user,social.tags.export.api.password,comscore.board-report.password,comscore.board-report.user"
     token-source: "environment"
     environment-token: "VAULT_TOKEN"
 #    secret-path: "${GROUP:local}/social/feed"

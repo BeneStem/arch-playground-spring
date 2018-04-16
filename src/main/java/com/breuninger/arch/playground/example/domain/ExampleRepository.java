@@ -4,11 +4,10 @@ import org.bson.Document;
 import org.springframework.stereotype.Repository;
 
 import com.breuninger.arch.playground.common.domain.JongoMapper;
+import com.breuninger.boot.mongo.AbstractMongoRepository;
+import com.breuninger.boot.mongo.configuration.MongoProperties;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import de.otto.edison.mongo.AbstractMongoRepository;
-import de.otto.edison.mongo.configuration.MongoProperties;
 
 @Repository
 public class ExampleRepository extends AbstractMongoRepository<String, Example> {

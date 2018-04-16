@@ -28,6 +28,7 @@ buildscript {
   val gradlePlugins = extra["gradlePlugins"] as Map<*, *>
 
   repositories {
+    mavenLocal()
     jcenter()
     maven { setUrl("https://plugins.gradle.org/m2/") }
     maven { setUrl("https://oss.sonatype.org/content/repositories/snapshots/") }
@@ -40,6 +41,7 @@ buildscript {
 }
 
 repositories {
+  mavenLocal()
   jcenter()
   maven { setUrl("https://oss.sonatype.org/content/repositories/snapshots/") }
 }
@@ -59,26 +61,16 @@ dependencies {
 
   "compile"(libraries["hibernate-validator"] as String)
   "compile"(libraries["owasp-java-html-sanitizer"] as String)
-  "compile"(libraries["edison-core"] as String)
-  "compile"(libraries["edison-jobs"] as String)
-  "compile"(libraries["mongodb-driver"] as String)
-  "compile"(libraries["edison-mongo"] as String)
+  "compile"(libraries["spring-boot-starter-breuninger-core"] as String)
+  "compile"(libraries["spring-boot-starter-breuninger-jobs"] as String)
+  "compile"(libraries["spring-boot-starter-breuninger-mongo"] as String)
+  "compile"(libraries["spring-boot-starter-breuninger-togglz"] as String)
   "compile"(libraries["edison-hal"] as String)
-  "compile"(libraries["edison-togglz"] as String)
   "compile"(libraries["jongo"] as String)
   "compile"(libraries["bson4jackson"] as String)
   "compile"(libraries["edison-vault"] as String)
   "compile"(libraries["handy-uri-templates"] as String)
   "compile"(libraries["httpclient"] as String)
-
-  // TODO remove with edison release version
-  "compile"(libraries["spring-context-support"] as String)
-  "compile"(libraries["spring-boot-starter-web"] as String)
-  "compile"(libraries["spring-boot-starter-actuator"] as String)
-  "compile"(libraries["spring-boot-starter-thymeleaf"] as String)
-  "compile"(libraries["spring-boot-starter-json"] as String)
-  "compile"(libraries["spring-boot-starter"] as String)
-  "compile"(libraries["spring-boot-starter-logging"] as String)
 
   "compile"(libraries["spring-boot-devtools"] as String)
 
@@ -87,7 +79,7 @@ dependencies {
 
   "testCompile"(testLibraries["embed-mongo"] as String)
   "testCompile"(testLibraries["mockito-core"] as String)
-  "testCompile"(testLibraries["edison-testsupport"] as String)
+  "testCompile"(testLibraries["spring-boot-starter-breuninger-testsupport"] as String)
   "testCompile"(testLibraries["hamcrest-optional"] as String)
   "testCompile"(testLibraries["spring-boot-starter-test"] as String)
 }

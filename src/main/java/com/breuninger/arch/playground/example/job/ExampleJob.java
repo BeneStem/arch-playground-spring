@@ -1,15 +1,15 @@
 package com.breuninger.arch.playground.example.job;
 
-import static de.otto.edison.jobs.definition.DefaultJobDefinition.cronJobDefinition;
+import static com.breuninger.boot.jobs.definition.DefaultJobDefinition.cronJobDefinition;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
+import com.breuninger.boot.jobs.definition.JobDefinition;
+import com.breuninger.boot.jobs.service.JobRunnable;
 
-import de.otto.edison.jobs.definition.JobDefinition;
-import de.otto.edison.jobs.service.JobRunnable;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component

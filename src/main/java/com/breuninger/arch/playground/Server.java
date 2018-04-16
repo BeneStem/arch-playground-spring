@@ -5,85 +5,84 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
-import com.codahale.metrics.MetricRegistry;
+import com.breuninger.boot.authentication.configuration.LdapConfiguration;
+import com.breuninger.boot.health.configuration.HealthConfiguration;
+import com.breuninger.boot.jobs.configuration.JobsConfiguration;
+import com.breuninger.boot.jobs.controller.JobDefinitionsController;
+import com.breuninger.boot.jobs.controller.JobsController;
+import com.breuninger.boot.jobs.eventbus.EventBusConfiguration;
+import com.breuninger.boot.jobs.service.JobDefinitionService;
+import com.breuninger.boot.jobs.service.JobMessageLogAppender;
+import com.breuninger.boot.jobs.service.JobMetaService;
+import com.breuninger.boot.jobs.service.JobMutexGroups;
+import com.breuninger.boot.jobs.service.JobService;
+import com.breuninger.boot.jobs.service.UuidProvider;
+import com.breuninger.boot.logging.LoggingConfiguration;
+import com.breuninger.boot.logging.ui.LoggersConfiguration;
+import com.breuninger.boot.logging.ui.LoggersController;
+import com.breuninger.boot.mongo.MongoStatusDetailIndicator;
+import com.breuninger.boot.mongo.configuration.MongoConfiguration;
+import com.breuninger.boot.mongo.configuration.MongoJobsConfiguration;
+import com.breuninger.boot.mongo.configuration.MongoTogglzConfiguration;
+import com.breuninger.boot.navigation.NavBarConfiguration;
+import com.breuninger.boot.registry.client.AsyncHttpRegistryClient;
+import com.breuninger.boot.registry.configuration.ServiceRegistryConfiguration;
+import com.breuninger.boot.status.configuration.ApplicationInfoConfiguration;
+import com.breuninger.boot.status.configuration.ApplicationStatusAggregatorConfiguration;
+import com.breuninger.boot.status.configuration.ClusterInfoConfiguration;
+import com.breuninger.boot.status.configuration.SystemInfoConfiguration;
+import com.breuninger.boot.status.configuration.TeamInfoConfiguration;
+import com.breuninger.boot.status.configuration.VersionInfoConfiguration;
+import com.breuninger.boot.status.controller.ExternalDependencies;
+import com.breuninger.boot.status.controller.GlobalModelAttributes;
+import com.breuninger.boot.status.controller.InternalController;
+import com.breuninger.boot.status.controller.StatusController;
+import com.breuninger.boot.togglz.configuration.TogglzConfiguration;
+import com.breuninger.boot.togglz.configuration.TogglzConsoleConfiguration;
+import com.breuninger.boot.togglz.controller.FeatureTogglesController;
 
-import de.otto.edison.authentication.configuration.LdapConfiguration;
-import de.otto.edison.health.configuration.HealthConfiguration;
-import de.otto.edison.jobs.configuration.JobsConfiguration;
-import de.otto.edison.jobs.controller.JobDefinitionsController;
-import de.otto.edison.jobs.controller.JobsController;
-import de.otto.edison.jobs.eventbus.EventBusConfiguration;
-import de.otto.edison.jobs.service.JobDefinitionService;
-import de.otto.edison.jobs.service.JobMessageLogAppender;
-import de.otto.edison.jobs.service.JobMetaService;
-import de.otto.edison.jobs.service.JobMutexGroups;
-import de.otto.edison.jobs.service.JobService;
-import de.otto.edison.jobs.service.UuidProvider;
-import de.otto.edison.logging.LoggingConfiguration;
-import de.otto.edison.logging.ui.LoggersConfiguration;
-import de.otto.edison.logging.ui.LoggersHtmlEndpoint;
-import de.otto.edison.metrics.configuration.GraphiteReporterConfiguration;
-import de.otto.edison.metrics.http.HttpMetricsFilter;
-import de.otto.edison.mongo.MongoStatusDetailIndicator;
-import de.otto.edison.mongo.configuration.MongoConfiguration;
-import de.otto.edison.mongo.configuration.MongoJobsConfiguration;
-import de.otto.edison.mongo.configuration.MongoTogglzConfiguration;
-import de.otto.edison.navigation.NavBarConfiguration;
-import de.otto.edison.registry.client.AsyncHttpRegistryClient;
-import de.otto.edison.registry.configuration.ServiceRegistryConfiguration;
-import de.otto.edison.status.configuration.ApplicationInfoConfiguration;
-import de.otto.edison.status.configuration.ApplicationStatusAggregatorConfiguration;
-import de.otto.edison.status.configuration.ClusterInfoConfiguration;
-import de.otto.edison.status.configuration.SystemInfoConfiguration;
-import de.otto.edison.status.configuration.TeamInfoConfiguration;
-import de.otto.edison.status.configuration.VersionInfoConfiguration;
-import de.otto.edison.status.controller.GlobalModelAttributes;
-import de.otto.edison.status.controller.InternalController;
-import de.otto.edison.togglz.configuration.TogglzConfiguration;
-import de.otto.edison.togglz.configuration.TogglzConsoleConfiguration;
-import de.otto.edison.togglz.controller.FeatureTogglesController;
 import de.otto.edison.vault.VaultPropertySourcePostProcessor;
 
 @SpringBootApplication
 @PropertySource("version.properties")
 @Import({
-          SystemInfoConfiguration.class,
-          HealthConfiguration.class,
-          TeamInfoConfiguration.class,
           ApplicationInfoConfiguration.class,
-          VersionInfoConfiguration.class,
           ApplicationStatusAggregatorConfiguration.class,
-          ClusterInfoConfiguration.class,
-          LoggingConfiguration.class,
-          LoggersConfiguration.class,
-          GraphiteReporterConfiguration.class,
-          ServiceRegistryConfiguration.class,
-          NavBarConfiguration.class,
-          LdapConfiguration.class,
-          GlobalModelAttributes.class,
-          InternalController.class,
-          LoggersHtmlEndpoint.class,
-          HttpMetricsFilter.class,
-          MetricRegistry.class,
           AsyncHttpRegistryClient.class,
+          ClusterInfoConfiguration.class,
           EventBusConfiguration.class,
-          JobMessageLogAppender.class,
-          JobsConfiguration.class,
+          ExternalDependencies.class,
+          FeatureTogglesController.class,
+          GlobalModelAttributes.class,
+          HealthConfiguration.class,
+          InternalController.class,
           JobDefinitionsController.class,
+          JobDefinitionService.class,
+          JobMessageLogAppender.class,
+          JobMetaService.class,
+          JobMutexGroups.class,
+          JobsConfiguration.class,
           JobsController.class,
           JobService.class,
-          JobMetaService.class,
-          JobDefinitionService.class,
-          JobMutexGroups.class,
-          UuidProvider.class,
-          TogglzConfiguration.class,
-          TogglzConsoleConfiguration.class,
-          FeatureTogglesController.class,
+          LdapConfiguration.class,
+          LoggersConfiguration.class,
+          LoggersController.class,
+          LoggingConfiguration.class,
           MongoConfiguration.class,
           MongoJobsConfiguration.class,
-          MongoTogglzConfiguration.class,
           MongoStatusDetailIndicator.class,
-          VaultPropertySourcePostProcessor.class
+          MongoTogglzConfiguration.class,
+          NavBarConfiguration.class,
+          ServiceRegistryConfiguration.class,
+          StatusController.class,
+          StatusController.class,
+          SystemInfoConfiguration.class,
+          TeamInfoConfiguration.class,
+          TogglzConfiguration.class,
+          TogglzConsoleConfiguration.class,
+          UuidProvider.class,
+          VaultPropertySourcePostProcessor.class,
+          VersionInfoConfiguration.class
         })
 public class Server {
 

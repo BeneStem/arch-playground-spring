@@ -4,7 +4,6 @@
 /build/
 /classes/
 /coverage/
-/gradle/wrapper/gradle-wrapper.jar
 /node_modules/
 /out/
 /src/main/resources/static/
