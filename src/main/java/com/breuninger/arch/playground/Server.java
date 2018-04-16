@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 import com.breuninger.boot.authentication.configuration.LdapConfiguration;
+import com.breuninger.boot.configuration.ThymeleafConfiguration;
 import com.breuninger.boot.health.configuration.HealthConfiguration;
 import com.breuninger.boot.jobs.configuration.JobsConfiguration;
 import com.breuninger.boot.jobs.controller.JobDefinitionsController;
@@ -78,6 +79,7 @@ import de.otto.edison.vault.VaultPropertySourcePostProcessor;
           StatusController.class,
           SystemInfoConfiguration.class,
           TeamInfoConfiguration.class,
+          ThymeleafConfiguration.class,
           TogglzConfiguration.class,
           TogglzConsoleConfiguration.class,
           UuidProvider.class,
