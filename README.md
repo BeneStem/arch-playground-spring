@@ -23,6 +23,12 @@ Install client dependencies:
 
     $ yarn install
 
+### Data
+
+You can setup your mongodb with our sample data by executing following command from project-root:
+
+    $ mongorestore ./data/dump
+
 ## Production
 
 Build client:
