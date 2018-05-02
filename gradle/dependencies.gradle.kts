@@ -17,7 +17,7 @@ val versions = mapOf(
 )
 val testVersions = mapOf(
   Pair("embed-mongo", "2.0.3"),
-  Pair("mockito-core", "2.18.0"),
+  Pair("mockito-core", "2.18.3"),
   Pair("hamcrest-optional", "1.0")
 )
 val pluginVersions = mapOf(
