@@ -116,3 +116,7 @@ You can do this by putting this into your *~/.gradle/gradle.properties*: `org.gr
 When running gradle tasks you then have to set `-Djava.endorsed.dirs=` as shown in this example:
 
     $ gradle bootRun -Djava.endorsed.dirs=
+
+If you want to execute the `bootRun` task directly in IntelliJ IDEA you have to add the `-Djava.endorsed.dirs=` property to the `idea64.vmoptions` file via **Help => Edit Custom VM Options... => Restart IntelliJ** to disable endorsed dirs *globally*.
+
+Otherwise IntelliJ will add its own endorsed dirs and override the empty path from the `gradle.properties` file which will cause an *Could not create the Java Virtual Machine.* error when bootRun is executed.
