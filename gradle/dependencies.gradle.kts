@@ -3,7 +3,7 @@ val versions = mapOf(
   Pair("thymeleaf-layout-dialect", "2.3.0"),
   Pair("lombok", "1.16.21"),
   Pair("findbugs", "3.0.1"),
-  Pair("spring", "5.0.5.RELEASE"),
+  Pair("spring", "5.0.6.RELEASE"),
   Pair("hibernate-validator", "6.0.9.Final"),
   Pair("owasp-java-html-sanitizer", "20171016.1"),
   Pair("spring-boot", "2.0.1.RELEASE"),

@@ -264,6 +264,7 @@
     "prefer-readonly": true,
     "prefer-switch": true,
     "prefer-template": true,
+    "prefer-while": true,
     "promise-function-async": false,
     "quotemark": [
       true,
@@ -299,6 +300,10 @@
     "strict-type-predicates": true,
     "switch-default": true,
     "switch-final-break": true,
+    "ter-no-proto": true,
+    "ter-no-script-url": true,
+    "ter-no-self-compare": true,
+    "ter-padded-blocks": true,
     "trailing-comma": [
       true,
       {
