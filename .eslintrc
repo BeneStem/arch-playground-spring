@@ -209,6 +209,7 @@
       "error",
       "always"
     ],
+    "max-classes-per-file": ["error", 1],
     "max-depth": [
       "error",
       4
@@ -230,6 +231,7 @@
       "error",
       130
     ],
+    "max-lines-per-function": ["error", 20],
     "max-nested-callbacks": [
       "error",
       3
@@ -532,6 +534,7 @@
       }
     ],
     "prefer-numeric-literals": "error",
+    "prefer-object-spread": "error",
     "prefer-promise-reject-errors": [
       "error",
       {

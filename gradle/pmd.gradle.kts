@@ -1,6 +1,6 @@
 val pluginVersions = extra["pluginVersions"] as Map<*, *>
 
-apply { plugin("pmd") }
+apply(plugin = "pmd")
 
 configure<PmdExtension> {
   toolVersion = pluginVersions["pmd"] as String

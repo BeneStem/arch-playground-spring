@@ -55,6 +55,7 @@ breuninger:
     token-source: "environment"
     environment-token: "VAULT_TOKEN"
 #    secret-path: "${GROUP:local}/social/feed"
+  jobs.watcher.enabled: true
   ldap:
     enabled: false
     baseDn[0]: "ou=otto,ou=people,dc=lhotse,dc=otto,dc=de"

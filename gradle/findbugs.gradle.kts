@@ -1,6 +1,6 @@
 val versions = extra["versions"] as Map<*, *>
 
-apply { plugin("findbugs") }
+apply(plugin = "findbugs")
 
 configure<FindBugsExtension> {
   toolVersion = versions["findbugs"] as String

@@ -1,6 +1,6 @@
 val pluginVersions = extra["pluginVersions"] as Map<*, *>
 
-apply { plugin("checkstyle") }
+apply(plugin = "checkstyle")
 
 configure<CheckstyleExtension> {
   toolVersion = pluginVersions["checkstyle"] as String

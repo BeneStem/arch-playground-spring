@@ -1,6 +1,6 @@
 val pluginVersions = extra["pluginVersions"] as Map<*, *>
 
-apply { plugin("jacoco") }
+apply(plugin = "jacoco")
 
 configure<JacocoPluginExtension> {
   toolVersion = pluginVersions["jacoco"] as String
