@@ -8,6 +8,7 @@ import org.springframework.context.annotation.PropertySource;
 import com.breuninger.boot.authentication.configuration.LdapConfiguration;
 import com.breuninger.boot.configuration.ThymeleafConfiguration;
 import com.breuninger.boot.health.configuration.HealthConfiguration;
+import com.breuninger.boot.jobs.configuration.JobWatcher;
 import com.breuninger.boot.jobs.configuration.JobsConfiguration;
 import com.breuninger.boot.jobs.controller.JobDefinitionsController;
 import com.breuninger.boot.jobs.controller.JobsController;
@@ -65,6 +66,7 @@ import de.otto.edison.vault.VaultPropertySourcePostProcessor;
           JobsConfiguration.class,
           JobsController.class,
           JobService.class,
+          JobWatcher.class,
           LdapConfiguration.class,
           LoggersConfiguration.class,
           LoggersController.class,
