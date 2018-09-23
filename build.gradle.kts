@@ -1,5 +1,7 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdates
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.github.spotbugs.SpotBugsExtension
+import com.github.spotbugs.SpotBugsTask
 import org.gradle.api.JavaVersion
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.kotlin.dsl.configure
@@ -28,7 +30,7 @@ buildscript {
     classpath(gradlePlugins["spring-boot"] as String)
     classpath(gradlePlugins["versions"] as String)
     classpath(gradlePlugins["git-properties"] as String)
-
+    classpath(gradlePlugins["spotbugs-gradle-plugin"] as String)
   }
 }
 
@@ -39,6 +41,7 @@ apply {
   plugin("io.spring.dependency-management")
   plugin("com.github.ben-manes.versions")
   plugin("com.gorylenko.gradle-git-properties")
+  plugin("com.github.spotbugs")
 }
 
 repositories {
@@ -60,10 +63,11 @@ val compile by configurations
 val compileOnly by configurations
 val testCompile by configurations
 val testCompileOnly by configurations
+val spotbugsPlugins by configurations
 
 dependencies {
   compileOnly(libraries["lombok"] as String)
-  compileOnly(libraries["findbugs-annotations"] as String)
+  compileOnly(libraries["spotbugs-annotations"] as String)
   compileOnly(libraries["spring-context-indexer"] as String)
 
   compile(libraries["hibernate-validator"] as String)
@@ -88,11 +92,12 @@ dependencies {
   testCompile(testLibraries["spring-boot-starter-breuninger-testsupport"] as String)
   testCompile(testLibraries["hamcrest-optional"] as String)
   testCompile(testLibraries["spring-boot-starter-test"] as String)
+
+  spotbugsPlugins(libraries["spotbugs-plugin"] as String)
 }
 
 apply {
   from("$rootDir/gradle/checkstyle.gradle.kts")
-  // from("$rootDir/gradle/findbugs.gradle.kts")
   from("$rootDir/gradle/pmd.gradle.kts")
   from("$rootDir/gradle/test.gradle.kts")
   from("$rootDir/gradle/jacoco.gradle.kts")
@@ -103,6 +108,12 @@ configure<JavaPluginConvention> {
   targetCompatibility = JavaVersion.VERSION_1_10
 }
 
+configure<SpotBugsExtension> {
+  toolVersion = versions["spotbugs"] as String
+  effort = "max"
+  excludeFilter = file("$rootDir/config/spotbugs/spotbugs-exclude.xml")
+}
+
 tasks {
   withType<JavaCompile> {
     options.encoding = "UTF-8"
@@ -111,6 +122,14 @@ tasks {
 
   getByName<BootRun>("bootRun") {
     systemProperties = System.getProperties().mapKeys { entry -> entry.key.toString() }.toMap()
+  }
+
+  withType<SpotBugsTask> {
+    group = "Spotbugs"
+    reports {
+      xml.isEnabled = false
+      html.isEnabled = true
+    }
   }
 
   "dependencyUpdates"(DependencyUpdatesTask::class) {

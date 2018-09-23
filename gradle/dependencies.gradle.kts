@@ -1,37 +1,40 @@
 val versions = mapOf(
-  "kotlin" to "1.2.60",
+  "kotlin" to "1.2.70",
   "thymeleaf" to "3.0.9.RELEASE",
   "thymeleaf-layout-dialect" to "2.3.0",
   "lombok" to "1.18.2",
   "findbugs" to "3.0.1",
-  "spring" to "5.0.8.RELEASE",
-  "hibernate-validator" to "6.0.11.Final",
+  "spotbugs" to "3.1.7",
+  "spotbugs-plugin" to "1.8.0",
+  "spring" to "5.1.0.RELEASE",
+  "hibernate-validator" to "6.0.13.Final",
   "owasp-java-html-sanitizer" to "20180219.1",
-  "spring-boot" to "2.0.4.RELEASE",
-  "spring-boot-starter-breuninger" to "2.0.3.RELEASE",
+  "spring-boot" to "2.0.5.RELEASE",
+  "spring-boot-starter-breuninger" to "2.0.5.RELEASE",
   "edison-hal" to "2.0.1",
   "jongo" to "1.4.0",
-  "bson4jackson" to "2.9.0",
+  "bson4jackson" to "2.9.2",
   "edison-vault" to "2.0.4",
-  "handy-uri-templates" to "2.1.6",
-  "httpclient" to "4.5.5",
+  "handy-uri-templates" to "2.1.7",
+  "httpclient" to "4.5.6",
   "jackson-module-kotlin" to "2.9.6",
   "groovy" to "2.5.1"
 )
 val testVersions = mapOf(
   "embed-mongo" to "2.1.1",
-  "mockito-core" to "2.20.1",
+  "mockito-core" to "2.22.0",
   "hamcrest-optional" to "1.0",
-  "reactor" to "3.1.8.RELEASE",
+  "reactor" to "3.1.9.RELEASE",
   "mockito-kotlin" to "1.6.0",
   "hamkrest" to "1.4.2.2"
 )
 val pluginVersions = mapOf(
   "versions" to "0.20.0",
-  "git-properties" to "1.5.1",
+  "git-properties" to "1.5.2",
   "checkstyle" to "8.9",
   "jacoco" to "0.8.1",
-  "pmd" to "5.8.1"
+  "pmd" to "5.8.1",
+  "spotbugs-gradle-plugin" to "1.6.3"
 )
 
 val libraries = mapOf(
@@ -41,7 +44,7 @@ val libraries = mapOf(
   "kotlin-stdlib-jre7" to "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions["kotlin"]}",
   "kotlin-reflect" to "org.jetbrains.kotlin:kotlin-reflect:${versions["kotlin"]}",
   "jackson-module-kotlin" to "com.fasterxml.jackson.module:jackson-module-kotlin:${versions["jackson-module-kotlin"]}",
-  "findbugs-annotations" to "com.google.code.findbugs:annotations:${versions["findbugs"]}",
+  "spotbugs-annotations" to "com.github.spotbugs:spotbugs-annotations:${versions["spotbugs"]}",
   "spring-context-indexer" to "org.springframework:spring-context-indexer:${versions["spring"]}",
   "spring-context-support" to "org.springframework:spring-context-support:${versions["spring"]}",
   "spring-boot-starter-data-mongodb-reactive" to "org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${versions["spring-boot"]}",
@@ -65,7 +68,8 @@ val libraries = mapOf(
   "edison-vault" to "de.otto.edison:edison-vault:${versions["edison-vault"]}",
   "handy-uri-templates" to "com.damnhandy:handy-uri-templates:${versions["handy-uri-templates"]}",
   "httpclient" to "org.apache.httpcomponents:httpclient:${versions["httpclient"]}",
-  "spring-boot-devtools" to "org.springframework.boot:spring-boot-devtools:${versions["spring-boot"]}"
+  "spring-boot-devtools" to "org.springframework.boot:spring-boot-devtools:${versions["spring-boot"]}",
+  "spotbugs-plugin" to "com.h3xstream.findsecbugs:findsecbugs-plugin:${versions["spotbugs-plugin"]}"
 )
 val testLibraries = mapOf(
   "embed-mongo" to "de.flapdoodle.embed:de.flapdoodle.embed.mongo:${testVersions["embed-mongo"]}",
@@ -84,7 +88,8 @@ val gradlePlugins = mapOf(
   "kotlin-noarg" to "org.jetbrains.kotlin:kotlin-noarg:${versions["kotlin"]}",
   "spring-boot" to "org.springframework.boot:spring-boot-gradle-plugin:${versions["spring-boot"]}",
   "versions" to "com.github.ben-manes:gradle-versions-plugin:${pluginVersions["versions"]}",
-  "git-properties" to "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:${pluginVersions["git-properties"]}"
+  "git-properties" to "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:${pluginVersions["git-properties"]}",
+  "spotbugs-gradle-plugin" to "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:${pluginVersions["spotbugs-gradle-plugin"]}"
 )
 
 extra["versions"] = versions
