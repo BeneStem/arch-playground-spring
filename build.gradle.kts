@@ -114,12 +114,12 @@ tasks {
   }
 
   "dependencyUpdates"(DependencyUpdatesTask::class) {
-    resolutionStrategy = closureOf<ResolutionStrategy> {
+    resolutionStrategy {
       componentSelection {
         all {
-          val alphaBetaPattern = Regex("^.*[\\.-](alpha|beta|b|rc|cr|m|ea|incubating|atlassian|snap)[\\.\\w\\d-]*$",
-            RegexOption.IGNORE_CASE)
-          if (candidate.version.matches(alphaBetaPattern)) {
+          if (listOf("alpha", "beta", "b01", "rc", "cr", "m")
+              .map { qualifier -> Regex("(?i).*[.-]$qualifier[.\\d-]*") }
+              .any { it.matches(candidate.version) }) {
             reject("Rejected by alpha/beta revision: $candidate")
           }
         }
