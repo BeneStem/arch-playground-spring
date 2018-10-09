@@ -182,9 +182,7 @@ module.exports = {
             warnings: false,
             comparisons: false
           },
-          mangle: {
-            safari10: true
-          },
+          mangle: true,
           output: {
             comments: false,
             ascii_only: true
@@ -241,7 +239,7 @@ module.exports = {
       fileName: 'asset-manifest.json'
     }),
     new CompressionPlugin({
-      asset: '[path].gz',
+      filename: '[path].gz',
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,

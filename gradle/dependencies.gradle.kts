@@ -34,7 +34,7 @@ val pluginVersions = mapOf(
   "checkstyle" to "8.9",
   "jacoco" to "0.8.1",
   "pmd" to "5.8.1",
-  "spotbugs-gradle-plugin" to "1.6.3"
+  "spotbugs-gradle-plugin" to "1.6.4"
 )
 
 val libraries = mapOf(
