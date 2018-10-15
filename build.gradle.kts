@@ -116,11 +116,13 @@ configure<SpotBugsExtension> {
 
 tasks {
   withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    options.compilerArgs.addAll(arrayOf("-Xlint:all", "-parameters"))
+    options.apply {
+      encoding = "UTF-8"
+      compilerArgs = mutableListOf("-Xlint:all", "-parameters")
+    }
   }
 
-  getByName<BootRun>("bootRun") {
+  withType<BootRun> {
     systemProperties = System.getProperties().mapKeys { entry -> entry.key.toString() }.toMap()
   }
 
@@ -132,11 +134,12 @@ tasks {
     }
   }
 
-  "dependencyUpdates"(DependencyUpdatesTask::class) {
+  withType<DependencyUpdatesTask> {
     resolutionStrategy {
       componentSelection {
         all {
           if (listOf("alpha", "beta", "b01", "rc", "cr", "m")
+              .asSequence()
               .map { qualifier -> Regex("(?i).*[.-]$qualifier[.\\d-]*") }
               .any { it.matches(candidate.version) }) {
             reject("Rejected by alpha/beta revision: $candidate")
